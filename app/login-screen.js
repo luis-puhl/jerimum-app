@@ -7,8 +7,11 @@ export class Login extends React.Component {
    * TODO: Ajustar layou pra acomodar teclado
    * https://medium.freecodecamp.org/how-to-make-your-react-native-app-respond-gracefully-when-the-keyboard-pops-up-7442c1535580
    * https://github.com/spencercarli/react-native-keyboard-avoidance-examples/blob/master/app/Combo.js
+   * https://stackoverflow.com/questions/44382798/react-native-how-to-styling-the-textinput
    * 
    * TODO: Mudar estilo do input box
+   * https://medium.com/@mmazzarolo/styling-the-react-native-textinput-on-android-ed84aba6f7df
+   * 
    * TODO: Adicionar fonte Comic Sans (god why?)
    */ 
   render() {

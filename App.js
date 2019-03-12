@@ -3,6 +3,11 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Login } from './app/login-screen';
 
 export default class App extends React.Component {
+  /**
+   * TODO: Add Navigation
+   * https://reactnavigation.org/en/
+   * 
+   */
   render() {
     return (
       <Login></Login>
