@@ -3,44 +3,50 @@ import { StyleSheet, View, KeyboardAvoidingView, Image, TextInput, ScrollView, A
 import { RoundBtn } from './round-btn';
 
 export class Login extends React.Component {
+  /**
+   * TODO: Ajustar layou pra acomodar teclado
+   * https://medium.freecodecamp.org/how-to-make-your-react-native-app-respond-gracefully-when-the-keyboard-pops-up-7442c1535580
+   * https://github.com/spencercarli/react-native-keyboard-avoidance-examples/blob/master/app/Combo.js
+   * 
+   * TODO: Mudar estilo do input box
+   * TODO: Adicionar fonte Comic Sans (god why?)
+   */ 
   render() {
     return (
-      <ScrollView style={{flex:1}}>
-        <KeyboardAvoidingView enabled style={styles.container} behavior="padding">
-          <View style={styles.welcomeImage}>
-            <Image
-              source={require('../assets/icon.png')}
-              style={{ width: 192, height: 192, }}
-            />
-          </View>
-          <View style={styles.textInput}>
-            <TextInput
-              style={{ height: 40, }}
-              underlineColorAndroid="black"
-              placeholder="Login"
-              // onChangeText={(text) => this.setState({text})}
-            />
-            <TextInput
-              style={{ height: 40, }}
-              underlineColorAndroid="black"
-              placeholder="Senha"
-              // onChangeText={(text) => this.setState({text})}
-            />
-          </View>
-          <View style={styles.buttons}>
-            <RoundBtn
-              style={{...styles.button, backgroundColor: 'orange'}}
-              size="120"
-              title="entrar"
-              onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
-            <RoundBtn
-              style={{...styles.button, backgroundColor: 'wheat'}}
-              size="120"
-              title="cadastrar"
-              onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
-          </View>
-        </KeyboardAvoidingView>
-      </ScrollView>
+      <KeyboardAvoidingView enabled style={styles.container} behavior="padding">
+        <View style={styles.welcomeImage}>
+          <Image
+            source={require('../assets/icon.png')}
+            style={{ width: 192, height: 192, }}
+          />
+        </View>
+        <View style={styles.textInput}>
+          <TextInput
+            style={{ height: 40, }}
+            underlineColorAndroid="black"
+            placeholder="Login"
+            // onChangeText={(text) => this.setState({text})}
+          />
+          <TextInput
+            style={{ height: 40, }}
+            underlineColorAndroid="black"
+            placeholder="Senha"
+            // onChangeText={(text) => this.setState({text})}
+          />
+        </View>
+        <View style={styles.buttons}>
+          <RoundBtn
+            style={{...styles.button, backgroundColor: 'orange'}}
+            size="120"
+            title="entrar"
+            onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
+          <RoundBtn
+            style={{...styles.button, backgroundColor: 'wheat'}}
+            size="120"
+            title="cadastrar"
+            onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
+        </View>
+      </KeyboardAvoidingView>
     );
   }
 }
