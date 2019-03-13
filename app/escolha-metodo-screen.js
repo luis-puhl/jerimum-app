@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, KeyboardAvoidingView, Image, TextInput, ScrollView, Alert } from 'react-native';
+import { StyleSheet, View, Image, Text, Alert } from 'react-native';
 import { RoundBtn } from './round-btn';
 
 export class EscolhaMetodo extends React.Component {
@@ -11,17 +11,17 @@ export class EscolhaMetodo extends React.Component {
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={{ flex: 10, }}>
+        <View style={{ flex: 10, flexDirection: 'row',}}>
           <View style={styles.welcomeImage}>
-            <Text>Fixo</Text>
+            <Text style={styles.headText}>Fixo</Text>
             <RoundBtn
             style={{...styles.button, backgroundColor: 'orange'}}
             size="100"
             title="Fixo"
             onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
           </View>
-          <View>
-            <Text>ciclo</Text>
+          <View style={styles.welcomeImage}>
+            <Text style={styles.headText}>ciclo</Text>
             <RoundBtn
             style={{...styles.button, backgroundColor: 'orange'}}
             size="100"
@@ -32,7 +32,7 @@ export class EscolhaMetodo extends React.Component {
         <View style={styles.buttons}>
           <RoundBtn
             style={{...styles.button, backgroundColor: 'orange'}}
-            size="10"
+            size="40"
             title="->"
             onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
         </View>
@@ -42,6 +42,11 @@ export class EscolhaMetodo extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  headText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    // TextStyle
+  },
   container: {
     flex: 1,
     flexDirection: 'column',
