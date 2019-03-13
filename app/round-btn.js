@@ -3,20 +3,34 @@ import { StyleSheet, Text, View, TouchableHighlight, TouchableOpacity } from 're
 
 export class RoundBtn extends React.Component {
   style;
+  fontSize;
+  size;
   constructor(props) {
     super(props);
-    if (typeof props.size === 'string') {
-      try {
-        this.size = Number.parseInt(props.size);
-      } catch (error) {
-        this.size = 100;
+
+    function getNumber(value, def) {
+      if (value === undefined || value === null) {
+        return def;
       }
-    } else {
-      this.size = 0 + props.size;
+      if (typeof value == 'number') {
+        return value;
+      }
+      if (typeof value == 'string') {
+        try {
+          return Number.parseInt(value);
+        } catch (error) {
+          return def;
+        }
+      }
+      return 0 + value;
     }
+
+    this.size = getNumber(props.size, 100);
+    this.fontSize = getNumber(props.style.fontSize, 20);
+    this.paddingTop = (this.size - this.fontSize) /2 - this.fontSize/4;
     this.style = StyleSheet.create({
       RoundStuff: {
-        paddingTop: this.size/2 - ((props.style.fontSize / 2) || 10),
+        paddingTop: this.paddingTop,
         width: this.size,
         height: this.size,
         borderRadius: this.size/2,
@@ -25,7 +39,7 @@ export class RoundBtn extends React.Component {
       TextStyle:{
         color: props.style.color || '#fff',
         textAlign: 'center',
-        fontSize: props.style.fontSize || 20,
+        fontSize: this.fontSize,
         fontWeight: props.style.fontWeight || 'bold'
       },
     });

@@ -40,12 +40,12 @@ export class Login extends React.Component {
         <View style={styles.buttons}>
           <RoundBtn
             style={{...styles.button, backgroundColor: 'orange'}}
-            size="120"
+            size="100"
             title="entrar"
             onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
           <RoundBtn
             style={{...styles.button, backgroundColor: 'wheat'}}
-            size="120"
+            size="100"
             title="cadastrar"
             onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
         </View>
