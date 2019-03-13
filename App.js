@@ -1,25 +1,18 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { Login } from './app/login-screen';
+import { EscolhaMetodo } from './app/escolha-metodo-screen';
 
-export default class App extends React.Component {
-  /**
-   * TODO: Add Navigation
-   * https://reactnavigation.org/en/
-   * 
-   */
-  render() {
-    return (
-      <Login></Login>
-    );
-  }
-}
+import {createStackNavigator, createAppContainer} from 'react-navigation';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+/**
+ * TODO: Add Navigation (In Progress)
+ * https://reactnavigation.org/en/
+ * 
+ */
+const MainNavigator = createStackNavigator({
+  Login: {screen: Login},
+  EscolhaMetodo: {screen: EscolhaMetodo},
 });
+
+const App = createAppContainer(MainNavigator);
+
+export default App;

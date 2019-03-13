@@ -3,6 +3,10 @@ import { StyleSheet, View, KeyboardAvoidingView, Image, TextInput, ScrollView, A
 import { RoundBtn } from './round-btn';
 
 export class Login extends React.Component {
+  static navigationOptions = {
+    title: 'Login',
+  };
+
   /**
    * TODO: Ajustar layou pra acomodar teclado
    * https://medium.freecodecamp.org/how-to-make-your-react-native-app-respond-gracefully-when-the-keyboard-pops-up-7442c1535580
@@ -15,6 +19,7 @@ export class Login extends React.Component {
    * TODO: Adicionar fonte Comic Sans (god why?)
    */ 
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <KeyboardAvoidingView enabled style={styles.container} behavior="padding">
         <View style={styles.welcomeImage}>
@@ -42,7 +47,7 @@ export class Login extends React.Component {
             style={{...styles.button, backgroundColor: 'orange'}}
             size="100"
             title="entrar"
-            onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
+            onPress={() => navigate('EscolhaMetodo') }></RoundBtn>
           <RoundBtn
             style={{...styles.button, backgroundColor: 'wheat'}}
             size="100"
