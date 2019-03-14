@@ -1,6 +1,6 @@
 import { Login } from './app/login-screen';
 import { EscolhaMetodo } from './app/escolha-metodo-screen';
-
+import { Cadastro1 } from "./app/cadastro1";
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 /**
@@ -11,6 +11,7 @@ import {createStackNavigator, createAppContainer} from 'react-navigation';
 const MainNavigator = createStackNavigator({
   Login: {screen: Login},
   EscolhaMetodo: {screen: EscolhaMetodo},
+  Cadastro1: {screen: Cadastro1},
 });
 
 const App = createAppContainer(MainNavigator);
