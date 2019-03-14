@@ -4,7 +4,18 @@ import { RoundBtn } from './round-btn';
 
 export class EscolhaMetodo extends React.Component {
   static navigationOptions = {
-    title: 'Escolha Método',
+    title: 'Qual método pretende usar?',
+    headerStyle: {
+      backgroundColor: 'steelblue',
+
+    },
+    headerTintColor: 'white',
+    headerTitleStyle: {
+      fontWeight: 'normal',
+      fontSize: 20,
+      textAlign: 'center',
+
+    },
   };
 
   render() {
@@ -18,7 +29,7 @@ export class EscolhaMetodo extends React.Component {
             style={{...styles.button, backgroundColor: 'orange'}}
             size="100"
             title="Fixo"
-            onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
+              onPress={() => navigate('Objetivos')}></RoundBtn>
           </View>
           <View style={styles.welcomeImage}>
             <Text style={styles.headText}>ciclo</Text>
@@ -64,7 +75,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   buttons: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',

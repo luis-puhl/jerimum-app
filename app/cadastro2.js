@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Image, Text, Alert, TextInput, ScrollView } from 'react-native';
 import { RoundBtn } from './round-btn';
 
-export class Cadastro1 extends React.Component {
+export class Cadastro2 extends React.Component {
     static navigationOptions = {
         title: 'Cadastro',
         headerStyle: {
@@ -18,11 +18,6 @@ export class Cadastro1 extends React.Component {
         },
     };
 
-
-
-
-
-
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -33,7 +28,7 @@ export class Cadastro1 extends React.Component {
                         underlineColorAndroid="gray"
                     />
                     <Text style={styles.texto}>
-                        login/usuário
+                        e-mail
                     </Text>
                 </View>
                 <View>
@@ -42,16 +37,7 @@ export class Cadastro1 extends React.Component {
                         underlineColorAndroid="gray"
                     />
                     <Text style={styles.texto}>
-                        nome
-                    </Text>
-               </View>
-                <View>
-                    <TextInput
-                        style={styles.textoEntrada}
-                        underlineColorAndroid="gray"
-                    />
-                    <Text style={styles.texto}>
-                        idade
+                        digite uma senha
                     </Text>
                 </View>
                 <View>
@@ -60,24 +46,15 @@ export class Cadastro1 extends React.Component {
                         underlineColorAndroid="gray"
                     />
                     <Text style={styles.texto}>
-                        país
-                    </Text>
-                </View>
-                <View>
-                    <TextInput
-                        style={styles.textoEntrada}
-                        underlineColorAndroid="gray"
-                    />
-                    <Text style={styles.texto}>
-                        estado/província
+                        confirme a senha
                     </Text>
                 </View>
                 <View style={styles.buttons}>
                     <RoundBtn
                         style={{ ...styles.button, backgroundColor: 'orange' }}
                         size="40"
-                        title="->"
-                        onPress={() => navigate('Cadastro2')}></RoundBtn>
+                        title="Ok"
+                        onPress={() => { Alert.alert('You tapped the button!'); }}></RoundBtn>
                 </View>
             </ScrollView>
         );
@@ -95,7 +72,7 @@ const styles = StyleSheet.create({
     buttons: {
         flex: 2,
         justifyContent: 'space-evenly',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     textoEntrada: {
         fontSize: 20,
