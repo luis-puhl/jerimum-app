@@ -3,7 +3,7 @@ import { StyleSheet, View, KeyboardAvoidingView, Image, TextInput, ScrollView, A
 import { RoundBtn } from './round-btn';
 
 export class Login extends React.Component {
-  static navigationOptions = {
+    static navigationOptions = {
     title: 'Login',
   };
 
@@ -52,7 +52,7 @@ export class Login extends React.Component {
             style={{...styles.button, backgroundColor: 'wheat'}}
             size="100"
             title="cadastrar"
-            onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
+            onPress={() => navigate('Cadastro1')}></RoundBtn>
         </View>
       </KeyboardAvoidingView>
     );
