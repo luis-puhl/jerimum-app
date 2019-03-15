@@ -7,45 +7,45 @@ export class EscolhaMetodo extends React.Component {
     title: 'Qual método pretende usar?',
     headerStyle: {
       backgroundColor: 'steelblue',
-
     },
     headerTintColor: 'white',
     headerTitleStyle: {
       fontWeight: 'normal',
       fontSize: 20,
-      textAlign: 'center',
-
     },
   };
 
   render() {
-    const {navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={{ flex: 10, flexDirection: 'row',}}>
-          <View style={styles.welcomeImage}>
+        <View style={styles.buttons}>
+          <View style={styles.button}>
             <Text style={styles.headText}>Fixo</Text>
             <RoundBtn
-            style={{...styles.button, backgroundColor: 'orange'}}
-            size="100"
-            title="Fixo"
-              onPress={() => navigate('Objetivos')}></RoundBtn>
+              style={{ ...styles.button, backgroundColor: 'orange' }}
+              size="100"
+              title="Fixo"
+              onPress={() => navigate('Objetivos')}
+            />
           </View>
-          <View style={styles.welcomeImage}>
+          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Text style={styles.headText}>ciclo</Text>
             <RoundBtn
-            style={{...styles.button, backgroundColor: 'orange'}}
-            size="100"
-            title="ciclo"
-            onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
+              style={{ ...styles.button, backgroundColor: 'orange' }}
+              size="100"
+              title="ciclo"
+              onPress={() => Alert.alert('You tapped the button!')}
+            />
           </View>
         </View>
-        <View style={styles.buttons}>
+        <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
           <RoundBtn
-            style={{...styles.button, backgroundColor: 'orange'}}
+            style={{ ...styles.button, backgroundColor: 'orange', margin: 20 }}
             size="40"
             title="->"
-            onPress={() => {Alert.alert('You tapped the button!');}}></RoundBtn>
+            onPress={() => Alert.alert('You tapped the button!')}
+          />
         </View>
       </View>
     );
@@ -65,20 +65,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'stretch',
   },
-  welcomeImage: {
+  buttons: {
     flex: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  button: {
     alignItems: 'center',
     justifyContent: 'center',
   },
   textInput: {
     flex: 0.5,
     padding: 20,
-  },
-  buttons: {
-    flex: 2,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
   },
   button: {
     height: 40,
