@@ -3,9 +3,27 @@ import { StyleSheet, View, KeyboardAvoidingView, Image, TextInput, ScrollView, A
 import { RoundBtn } from './round-btn';
 
 export class Login extends React.Component {
-    static navigationOptions = {
+  static navigationOptions = {
     title: 'Login',
   };
+  navigate;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+    };
+  }
+
+  entrar() {
+    console.log(this.state);
+    this.props.navigation.navigate('EscolhaMetodo');
+  }
+  cadastrar() {
+    console.log(this.state);
+    this.props.navigation.navigate('Cadastro1');
+  }
 
   /**
    * TODO: Ajustar layou pra acomodar teclado
@@ -19,7 +37,6 @@ export class Login extends React.Component {
    * TODO: Adicionar fonte Comic Sans (god why?)
    */ 
   render() {
-    const {navigate} = this.props.navigation;
     return (
       <KeyboardAvoidingView enabled style={styles.container} behavior="padding">
         <View style={styles.welcomeImage}>
@@ -31,15 +48,13 @@ export class Login extends React.Component {
         <View style={styles.textInput}>
           <TextInput
             style={{ height: 40, }}
-            underlineColorAndroid="black"
             placeholder="Login"
-            // onChangeText={(text) => this.setState({text})}
+            onChangeText={username => this.setState(previousState => ({...previousState, username}))}
           />
           <TextInput
             style={{ height: 40, }}
-            underlineColorAndroid="black"
             placeholder="Senha"
-            // onChangeText={(text) => this.setState({text})}
+            onChangeText={password => this.setState(previousState => ({...previousState, password}))}
           />
         </View>
         <View style={styles.buttons}>
@@ -47,12 +62,12 @@ export class Login extends React.Component {
             style={{...styles.button, backgroundColor: 'orange'}}
             size="100"
             title="entrar"
-            onPress={() => navigate('EscolhaMetodo') }></RoundBtn>
+            onPress={() => this.entrar()}></RoundBtn>
           <RoundBtn
             style={{...styles.button, backgroundColor: 'wheat'}}
             size="100"
             title="cadastrar"
-            onPress={() => navigate('Cadastro1')}></RoundBtn>
+            onPress={() => this.cadastrar()}></RoundBtn>
         </View>
       </KeyboardAvoidingView>
     );
