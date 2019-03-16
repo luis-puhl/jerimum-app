@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, Alert } from 'react-native';
+import { StyleSheet, View, Text, Alert, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import { RoundBtn } from './components/round-btn';
 import { navigationOptions } from './components/navigationOptions';
 
@@ -13,72 +15,61 @@ export class EscolhaMetodo extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={{ flex: 10, flexDirection: 'row',}}>
-          <View style={styles.bigIconButton}>
+        <View style={styles.methodContainer}>
+          <TouchableOpacity
+            style={styles.bigIconButton}
+            activeOpacity={ .5 }
+            onPress={() => navigate('Objetivos')}
+            >
             <Text style={styles.headText}>Fixo</Text>
-            <RoundBtn
-              style={{ ...styles.button }}
-              size="100"
-              title="Fixo"
-              onPress={() => navigate('Objetivos')}
-            />
-          </View>
-          <View style={styles.bigIconButton}>
+            <MaterialCommunityIcons name="calendar-text" size={100} color="orange" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.bigIconButton}
+            activeOpacity={ .5 }
+            onPress={() => navigate('Objetivos')}
+            >
             <Text style={styles.headText}>ciclo</Text>
-            <RoundBtn
-              style={{ ...styles.button }}
-              size="100"
-              title="ciclo"
-              onPress={() => Alert.alert('You tapped the button!')}
-            />
-          </View>
+            <MaterialCommunityIcons name="chart-donut" size={100} color="orange" />
+          </TouchableOpacity>
         </View>
-        <View style={{...styles.bigIconButton, ...styles.lowerBtn}}>
-          <RoundBtn
-            style={{ ...styles.button, padding: 20 }}
-            size="40"
-            title="->"
-            onPress={() => Alert.alert('You tapped the button!')}
-          />
-        </View>
+        <TouchableOpacity
+          style={styles.lowerBtnContainer}
+          activeOpacity={ .5 }
+          onPress={() => navigate('Objetivos')}
+          >
+          <MaterialCommunityIcons name="arrow-right-thick" size={40} color="orange" />
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'stretch',
+    paddingVertical: 20,
+    paddingHorizontal: 40,
+  },
+  methodContainer: {
+    flex: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  bigIconButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   headText: {
     fontSize: 20,
     fontWeight: 'bold',
-    // TextStyle
   },
-  container: {
+  lowerBtnContainer: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
-  },
-  bigIconButton: {
-    flex: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    // flex: 2,
-    // flexDirection: 'row',
-    // justifyContent: 'space-evenly',
-    // alignItems: 'center',
-  },
-  button: {
-    height: 40,
-    width: 120,
-    flex: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'orange',
-  },
-  lowerBtn: {
-    padding: 30,
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    alignItems: 'center',
   },
 });
