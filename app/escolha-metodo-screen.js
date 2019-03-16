@@ -1,47 +1,41 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, Alert } from 'react-native';
-import { RoundBtn } from './round-btn';
+import { RoundBtn } from './components/round-btn';
+import { navigationOptions } from './components/navigationOptions';
 
 export class EscolhaMetodo extends React.Component {
   static navigationOptions = {
+    ...navigationOptions,
     title: 'Qual método pretende usar?',
-    headerStyle: {
-      backgroundColor: 'steelblue',
-    },
-    headerTintColor: 'white',
-    headerTitleStyle: {
-      fontWeight: 'normal',
-      fontSize: 20,
-    },
   };
 
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={styles.buttons}>
-          <View style={styles.button}>
+        <View style={{ flex: 10, flexDirection: 'row',}}>
+          <View style={styles.bigIconButton}>
             <Text style={styles.headText}>Fixo</Text>
             <RoundBtn
-              style={{ ...styles.button, backgroundColor: 'orange' }}
+              style={{ ...styles.button }}
               size="100"
               title="Fixo"
               onPress={() => navigate('Objetivos')}
             />
           </View>
-          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <View style={styles.bigIconButton}>
             <Text style={styles.headText}>ciclo</Text>
             <RoundBtn
-              style={{ ...styles.button, backgroundColor: 'orange' }}
+              style={{ ...styles.button }}
               size="100"
               title="ciclo"
               onPress={() => Alert.alert('You tapped the button!')}
             />
           </View>
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+        <View style={{...styles.bigIconButton, ...styles.lowerBtn}}>
           <RoundBtn
-            style={{ ...styles.button, backgroundColor: 'orange', margin: 20 }}
+            style={{ ...styles.button, padding: 20 }}
             size="40"
             title="->"
             onPress={() => Alert.alert('You tapped the button!')}
@@ -65,22 +59,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'stretch',
   },
-  buttons: {
+  bigIconButton: {
     flex: 2,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-  },
-  button: {
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  textInput: {
-    flex: 0.5,
-    padding: 20,
+    // flex: 2,
+    // flexDirection: 'row',
+    // justifyContent: 'space-evenly',
+    // alignItems: 'center',
   },
   button: {
     height: 40,
     width: 120,
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'orange',
+  },
+  lowerBtn: {
+    padding: 30,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
 });
