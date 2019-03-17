@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, Alert, TextInput, ScrollView } from 'react-native';
-import { RoundBtn } from './components/round-btn';
-import { navigationOptions } from './components/navigationOptions';
+
+import { colors, roundStyle, globalStyles, navigationOptions, icon } from './components/Theme';
+import { AppTextInput } from './components/AppTextInput';
+import { AppRoundBtn } from './components/AppRoundBtn';
 
 export class Cadastro2 extends React.Component {
   static navigationOptions = {
@@ -9,43 +11,50 @@ export class Cadastro2 extends React.Component {
     title: 'Cadastro',
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      confirmPassword: '',
+    };
+  }
+
+  send() {
+    console.log(this.state);
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <ScrollView style={{ flex: 1, margin: 20, }}>
-        <View>
-          <TextInput
-            style={styles.textoEntrada}
-            underlineColorAndroid="gray"
-          />
-          <Text style={styles.texto}>
-            e-mail
-          </Text>
-        </View>
-        <View>
-          <TextInput
-            style={styles.textoEntrada}
-            underlineColorAndroid="gray"
-          />
-          <Text style={styles.texto}>
-            digite uma senha
-          </Text>
-        </View>
-        <View>
-          <TextInput
-            style={styles.textoEntrada}
-            underlineColorAndroid="gray"
-          />
-          <Text style={styles.texto}>
-            confirme a senha
-          </Text>
-        </View>
-        <View style={styles.buttons}>
-          <RoundBtn
-            style={{ ...styles.button, backgroundColor: 'orange' }}
-            size="40"
-            title="Ok"
-            onPress={() => { Alert.alert('You tapped the button!'); }}></RoundBtn>
+      <ScrollView contentContainerStyle={globalStyles.container}>
+        <Image source={icon.source} style={{...icon.style, height: icon.heightSmall }} />
+        <AppTextInput
+          placeholder="e-mail"
+          value={this.state.email}
+          onChangeText={email => this.setState({...this.state, email})}
+          onSubmitEditing={() => this.passwordRef.focus()}
+          ref={(view) => this.emailRef = view}
+        />
+        <AppTextInput
+          placeholder="digite uma senha"
+          value={this.state.password}
+          onChangeText={password => this.setState({...this.state, password})}
+          onSubmitEditing={() => this.confirmPasswordRef.focus()}
+          ref={(view) => this.passwordRef = view}
+        />
+        <AppTextInput
+          placeholder="confirme a senha"
+          value={this.state.confirmPassword}
+          onChangeText={confirmPassword => this.setState({...this.state, confirmPassword})}
+          onSubmitEditing={() => this.send()}
+          ref={(view) => this.confirmPasswordRef = view}
+        />
+        <View style={styles.lowerBtnContainer}>
+          <AppRoundBtn.Text
+            onPress={() => navigate('Home')}
+            size={40}
+          >Ok</AppRoundBtn.Text>
         </View>
       </ScrollView>
     );
@@ -53,25 +62,8 @@ export class Cadastro2 extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  texto: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    // TextStyle
+  lowerBtnContainer: {
+    flex: 1,
+    justifyContent: 'center',
   },
-
-  buttons: {
-    flex: 2,
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-  },
-  textoEntrada: {
-    fontSize: 20,
-    textAlign: 'center',
-    marginBottom: -10,
-    marginTop: 20,
-    height: 40,
-    // TextStyle
-  },
-
 });

@@ -1,12 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Image, Animated, Keyboard, KeyboardAvoidingView, Dimensions  } from 'react-native';
-import { RoundBtn } from './components/round-btn';
-import { navigationOptions } from './components/navigationOptions';
-const icon = require('../assets/logo.png');
+import { StyleSheet, View, Text, TextInput, Animated, Keyboard, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 
-const window = Dimensions.get('window');
-const IMAGE_HEIGHT = Math.max(128, window.width / 2);
-const IMAGE_HEIGHT_SMALL = Math.max(64, window.width /7);
+import { colors, globalStyles, roundStyle, window, navigationOptions, icon } from './components/Theme';
+import { AppRoundBtn } from './components/AppRoundBtn';
+import { AppTextInput } from './components/AppTextInput';
 
 export class Login extends React.Component {
   static navigationOptions = {
@@ -20,7 +17,7 @@ export class Login extends React.Component {
       username: '',
       password: '',
     };
-    this.imageHeight = new Animated.Value(IMAGE_HEIGHT);
+    this.imageHeight = new Animated.Value(icon.height);
   }
   
   componentDidMount = () => {
@@ -32,11 +29,11 @@ export class Login extends React.Component {
     );
     this.keyboardWillShowSub = Keyboard.addListener(
       'keyboardDidShow',
-      animateImageHeightTo(IMAGE_HEIGHT_SMALL),
+      animateImageHeightTo(icon.heightSmall),
     );
     this.keyboardWillHideSub = Keyboard.addListener(
       'keyboardDidHide',
-      animateImageHeightTo(IMAGE_HEIGHT),
+      animateImageHeightTo(icon.height),
     );
   }
   componentWillUnmount = () => {
@@ -64,35 +61,29 @@ export class Login extends React.Component {
    */ 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <Animated.Image source={icon} style={[styles.logo, { height: this.imageHeight }]} />
-        <TextInput
-          style={styles.input}
+      <KeyboardAvoidingView style={globalStyles.container} behavior="padding">
+        <Animated.Image source={icon.source} style={{...icon.style, height: this.imageHeight }} />
+        <AppTextInput
           placeholder="Login"
+          value={this.state.username}
           onChangeText={this.setUsername}
-          underlineColorAndroid="wheat"
           onSubmitEditing={() => this.pwdInputRef.focus()}
         />
-        <TextInput
-          style={styles.input}
+        <AppTextInput
           secureTextEntry
           placeholder="Senha"
+          value={this.state.password}
           onChangeText={this.setPassword}
-          underlineColorAndroid="wheat"
           ref={(view) => this.pwdInputRef = view}
           onSubmitEditing={this.entrar}
         />
-        <View style={styles.register}>
-          <RoundBtn
-            style={{backgroundColor: 'orange'}}
-            size="100"
-            title="entrar"
-            onPress={this.entrar}></RoundBtn>
-          <RoundBtn
-            style={{backgroundColor: 'wheat'}}
-            size="100"
-            title="cadastrar"
-            onPress={this.cadastrar}></RoundBtn>
+        <View style={styles.buttonsContainer}>
+          <AppRoundBtn.Text onPress={this.entrar} size={100}>
+            entrar
+          </AppRoundBtn.Text>
+          <AppRoundBtn.Text onPress={this.cadastrar} size={100} style={ {backgroundColor: colors.secondary}}>
+            cadastrar
+          </AppRoundBtn.Text>
         </View>
       </KeyboardAvoidingView>
     );
@@ -100,23 +91,7 @@ export class Login extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  logo: {
-    height: IMAGE_HEIGHT,
-    resizeMode: 'contain',
-    marginTop: 10,
-  },
-  input: {
-    height: 50,
-    width: window.width - 100,
-    marginTop: 5,
-    fontSize: 20,
-  },
-  register: {
+  buttonsContainer: {
     height: 100,
     width: window.width -100,
     marginTop: 20,
@@ -124,5 +99,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  }
+  },
 });

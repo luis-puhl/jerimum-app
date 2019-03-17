@@ -1,7 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, Alert, TextInput, ScrollView } from 'react-native';
-import { RoundBtn } from './components/round-btn';
-import { navigationOptions } from './components/navigationOptions';
+import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
+
+import { globalStyles, navigationOptions, icon } from './components/Theme';
+import { AppTextInput } from './components/AppTextInput';
+import { AppRoundBtn } from './components/AppRoundBtn';
 
 export class Cadastro1 extends React.Component {
   static navigationOptions = {
@@ -9,61 +11,69 @@ export class Cadastro1 extends React.Component {
     title: 'Cadastro',
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      nome: '',
+      idade: '',
+      pais: '',
+      estado: '',
+    };
+    this.form = [
+      {
+        key: 'username',
+        legenda: 'login/usuário',
+        value: this.state.username,
+        setValue: username => this.setState({ ...this.state, username })
+      },
+      {
+        key: 'nome',
+        legenda: 'nome',
+        value: this.state.nome,
+        setValue: nome => this.setState({ ...this.state, nome })
+      },
+      {
+        key: 'idade',
+        legenda: 'idade',
+        value: this.state.idade,
+        setValue: idade => this.setState({ ...this.state, idade })
+      },
+      {
+        key: 'pais',
+        legenda: 'país',
+        value: this.state.pais,
+        setValue: pais => this.setState({ ...this.state, pais })
+      },
+      {
+        key: 'estado',
+        legenda: 'estado/província',
+        value: this.state.estado,
+        setValue: estado => this.setState({ ...this.state, estado })
+      },
+    ];
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <ScrollView style={{ flex: 1, margin: 20, }}>
-        <View>
-          <TextInput
-            style={styles.textoEntrada}
-            underlineColorAndroid="gray"
+      <ScrollView contentContainerStyle={globalStyles.container}>
+        <Image source={icon.source} style={{...icon.style, height: icon.heightSmall }} />
+        {this.form.map(item => (
+          <AppTextInput
+            key={item.key}
+            placeholder={item.legenda}
+            value={item.value}
+            onChangeText={item.setValue}
           />
-          <Text style={styles.texto}>
-            login/usuário
-          </Text>
-        </View>
-        <View>
-          <TextInput
-            style={styles.textoEntrada}
-            underlineColorAndroid="gray"
+        ))}
+        <View style={styles.lowerBtnContainer}>
+          <AppRoundBtn.MaterialCommunityIcons
+            style={{fontSize: 40}}
+            onPress={() => navigate('Cadastro2')}
+            size={40}
+            name="arrow-right-thick"
           />
-          <Text style={styles.texto}>
-            nome
-          </Text>
-         </View>
-        <View>
-          <TextInput
-            style={styles.textoEntrada}
-            underlineColorAndroid="gray"
-          />
-          <Text style={styles.texto}>
-            idade
-          </Text>
-        </View>
-        <View>
-          <TextInput
-            style={styles.textoEntrada}
-            underlineColorAndroid="gray"
-          />
-          <Text style={styles.texto}>
-            país
-          </Text>
-        </View>
-        <View>
-          <TextInput
-            style={styles.textoEntrada}
-            underlineColorAndroid="gray"
-          />
-          <Text style={styles.texto}>
-            estado/província
-          </Text>
-        </View>
-        <View style={styles.buttons}>
-          <RoundBtn
-            style={{ ...styles.button, backgroundColor: 'orange' }}
-            size="40"
-            title="->"
-            onPress={() => navigate('Cadastro2')}></RoundBtn>
         </View>
       </ScrollView>
     );
@@ -71,25 +81,9 @@ export class Cadastro1 extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  texto: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    // TextStyle
+  lowerBtnContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignSelf: 'flex-end',
   },
-
-  buttons: {
-    flex: 2,
-    justifyContent: 'space-evenly',
-    alignItems: 'flex-end',
-  },
-  textoEntrada: {
-    fontSize: 20,
-    textAlign: 'center',
-    marginBottom: -10,
-    marginTop: 20,
-    height: 40,
-    // TextStyle
-  },
-
 });

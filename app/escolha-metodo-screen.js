@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, Alert, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { RoundBtn } from './components/round-btn';
-import { navigationOptions } from './components/navigationOptions';
+import { colors, navigationOptions } from './components/Theme';
+import { AppRoundBtn } from './components/AppRoundBtn';
 
 export class EscolhaMetodo extends React.Component {
   static navigationOptions = {
@@ -22,7 +22,7 @@ export class EscolhaMetodo extends React.Component {
             onPress={() => navigate('Objetivos')}
             >
             <Text style={styles.headText}>Fixo</Text>
-            <MaterialCommunityIcons name="calendar-text" size={100} color="orange" />
+            <MaterialCommunityIcons name="calendar-text" size={100} color={colors.primary} />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.bigIconButton}
@@ -30,16 +30,17 @@ export class EscolhaMetodo extends React.Component {
             onPress={() => navigate('Objetivos')}
             >
             <Text style={styles.headText}>ciclo</Text>
-            <MaterialCommunityIcons name="chart-donut" size={100} color="orange" />
+            <MaterialCommunityIcons name="chart-donut" size={100} color={colors.primary} />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={styles.lowerBtnContainer}
-          activeOpacity={ .5 }
-          onPress={() => navigate('Objetivos')}
-          >
-          <MaterialCommunityIcons name="arrow-right-thick" size={40} color="orange" />
-        </TouchableOpacity>
+        <View style={styles.lowerBtnContainer}>
+          <AppRoundBtn.MaterialCommunityIcons
+            style={{fontSize: 40}}
+            onPress={() => navigate('Objetivos')}
+            size={40}
+            name="arrow-right-thick"
+          />
+        </View>
       </View>
     );
   }
