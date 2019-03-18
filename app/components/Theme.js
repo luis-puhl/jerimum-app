@@ -39,14 +39,21 @@ export const colors = {
   weekLine: '#8d99c0',
 }
 export function invertColor(color) {
-  const i = colors.weekDay.indexOf(color);
-  if (i >= 0) return colors.weekDay[i + 1 % colors.weekDay.length];
+  // const i = colors.weekDay.indexOf(color);
+  // if (i >= 0) return colors.weekDay[i + 1 % colors.weekDay.length];
   const link = {
     [colors.background]: colors.onBackground,
     [colors.primary]: colors.onPrimary,
     [colors.secondary]: colors.onSecondary,
     [colors.terciary]: colors.onTerciary,
     [colors.gray]: colors.onGray,
+    '#337ab7': colors.onPrimary,
+    '#33ccff': colors.onBackground,
+    '#009900': colors.onPrimary,
+    '#ffcc00': colors.onBackground,
+    '#ff6600': colors.onBackground,
+    '#cc0000': colors.onPrimary,
+    '#993399': colors.onPrimary,
   }
   for (const item of Object.entries(link)) {
     if (item[0] === color) return item[1];
