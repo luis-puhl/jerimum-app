@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, DatePickerAndroid, TouchableHighlight, TextInpu
 import { AppTextInput } from './components/AppTextInput';
 import { AppRoundBtn } from './components/AppRoundBtn';
 
-export class Objetivos extends React.Component {
+export class ObjetivosScren extends React.Component {
   static navigationOptions = {
     title: 'Objetivos & informações'
   };
