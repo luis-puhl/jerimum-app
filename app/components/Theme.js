@@ -38,6 +38,29 @@ export const colors = {
   onGray: '#fff',
   weekLine: '#8d99c0',
 }
+export function invertColor(color) {
+  // const i = colors.weekDay.indexOf(color);
+  // if (i >= 0) return colors.weekDay[i + 1 % colors.weekDay.length];
+  // const link = {
+  //   [colors.background]: colors.onBackground,
+  //   [colors.primary]: colors.onPrimary,
+  //   [colors.secondary]: colors.onSecondary,
+  //   [colors.terciary]: colors.onTerciary,
+  //   [colors.gray]: colors.onGray,
+  // }
+  // for (const item of Object.entries(link)) {
+  //   if (item[0] === color) return item[1];
+  //   if (item[1] === color) return item[0];
+  // }
+  color = color.replace('#', '');
+  if (color.length === 3){
+    color = color.replace(/(.)/gi, p => p+p);
+  }
+  if (color.length < 6){
+    color = color.padStart(6, '0');
+  }
+  return '#' + Math.abs(~Number.parseInt(color, 16)).toString(16).padStart(6, '0').slice(0, 6);
+}
 
 export const globalStyles = StyleSheet.create({
   container: {

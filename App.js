@@ -6,7 +6,7 @@ import { Login } from './app/Login';
 import { EscolhaMetodo } from './app/EscolhaMetodo';
 import { Cadastro1, Cadastro2 } from './app/Cadastro';
 import { Objetivos } from './app/Objetivos';
-import { Horarios } from './app/Horarios';
+import { Horarios, HorariosDetail } from './app/Horarios';
 
 /**
  * TODO: Add Navigation (In Progress)
@@ -21,6 +21,7 @@ const MainNavigator = createStackNavigator(
     Cadastro2: {screen: Cadastro2},
     Objetivos: {screen: Objetivos},
     Horarios: {screen: Horarios},
+    HorariosDetail: {screen: HorariosDetail},
   },
   {
     initialRouteName: 'Login',
