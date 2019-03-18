@@ -23,31 +23,29 @@ export class Cadastro1 extends React.Component {
       {
         key: 'username',
         legenda: 'login/usuário',
-        value: this.state.username,
         setValue: username => this.setState({ ...this.state, username })
       },
       {
         key: 'nome',
         legenda: 'nome',
-        value: this.state.nome,
         setValue: nome => this.setState({ ...this.state, nome })
       },
       {
         key: 'idade',
         legenda: 'idade',
-        value: this.state.idade,
-        setValue: idade => this.setState({ ...this.state, idade })
+        setValue: idade => this.setState({ ...this.state, idade }),
+        props: {
+          keyboardType: 'numeric',
+        },
       },
       {
         key: 'pais',
         legenda: 'país',
-        value: this.state.pais,
         setValue: pais => this.setState({ ...this.state, pais })
       },
       {
         key: 'estado',
         legenda: 'estado/província',
-        value: this.state.estado,
         setValue: estado => this.setState({ ...this.state, estado })
       },
     ];
@@ -62,8 +60,9 @@ export class Cadastro1 extends React.Component {
           <AppTextInput
             key={item.key}
             placeholder={item.legenda}
-            value={item.value}
-            onChangeText={item.setValue}
+            value={this.state[item.key]}
+            onChangeText={v => item.setValue(v)}
+            {...(item.props || {})}
           />
         ))}
         <View style={{ flex: 1, justifyContent: 'center', alignSelf: 'flex-end', }}>
@@ -98,7 +97,7 @@ export class Cadastro2 extends React.Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
+    const { navigate, popToTop } = this.props.navigation;
     return (
       <ScrollView contentContainerStyle={globalStyles.container}>
         <Image source={icon.source} style={{...icon.style, height: icon.heightSmall }} />
@@ -106,16 +105,16 @@ export class Cadastro2 extends React.Component {
           placeholder="e-mail"
           value={this.state.email}
           onChangeText={email => this.setState({...this.state, email})}
-          onSubmitEditing={() => this.passwordRef.focus()}
-          ref={(view) => this.emailRef = view}
+          onSubmitEditing={() => this.inputRefPassword.focus()}
+          keyboardType="email-address"
         />
         <AppTextInput
           secureTextEntry
           placeholder="digite uma senha"
           value={this.state.password}
           onChangeText={password => this.setState({...this.state, password})}
-          onSubmitEditing={() => this.confirmPasswordRef.focus()}
-          ref={(view) => this.passwordRef = view}
+          onSubmitEditing={() => this.inputRefconfirmPassword.focus()}
+          ref={(view) => this.inputRefPassword = view}
         />
         <AppTextInput
           secureTextEntry
@@ -123,11 +122,11 @@ export class Cadastro2 extends React.Component {
           value={this.state.confirmPassword}
           onChangeText={confirmPassword => this.setState({...this.state, confirmPassword})}
           onSubmitEditing={() => this.send()}
-          ref={(view) => this.confirmPasswordRef = view}
+          ref={(view) => this.inputRefconfirmPassword = view}
         />
         <View style={{ flex: 1, justifyContent: 'center', }}>
           <AppRoundBtn.Text
-            onPress={() => navigate('Home')}
+            onPress={() => popToTop()}
             size={40}
           >Ok</AppRoundBtn.Text>
         </View>

@@ -19,7 +19,7 @@ const MainNavigator = createStackNavigator(
     EscolhaMetodo: {screen: EscolhaMetodo},
     Cadastro1: {screen: Cadastro1},
     Cadastro2: {screen: Cadastro2},
-    ObjetivosScren: {screen: ObjetivosScren},
+    Objetivos: {screen: ObjetivosScren},
     Horarios: {screen: Horarios},
     HorariosDetail: {screen: HorariosDetail},
   },
