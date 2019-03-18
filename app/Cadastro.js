@@ -1,13 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 
-import { globalStyles, navigationOptions, icon } from './components/Theme';
+import { globalStyles, icon } from './components/Theme';
 import { AppTextInput } from './components/AppTextInput';
 import { AppRoundBtn } from './components/AppRoundBtn';
 
 export class Cadastro1 extends React.Component {
   static navigationOptions = {
-    ...navigationOptions,
     title: 'Cadastro',
   };
 
@@ -67,7 +66,7 @@ export class Cadastro1 extends React.Component {
             onChangeText={item.setValue}
           />
         ))}
-        <View style={styles.lowerBtnContainer}>
+        <View style={{ flex: 1, justifyContent: 'center', alignSelf: 'flex-end', }}>
           <AppRoundBtn.MaterialCommunityIcons
             style={{fontSize: 40}}
             onPress={() => navigate('Cadastro2')}
@@ -80,10 +79,59 @@ export class Cadastro1 extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  lowerBtnContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignSelf: 'flex-end',
-  },
-});
+export class Cadastro2 extends React.Component {
+  static navigationOptions = {
+    title: 'Cadastro',
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      confirmPassword: '',
+    };
+  }
+
+  send() {
+    console.log(this.state);
+  }
+
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <ScrollView contentContainerStyle={globalStyles.container}>
+        <Image source={icon.source} style={{...icon.style, height: icon.heightSmall }} />
+        <AppTextInput
+          placeholder="e-mail"
+          value={this.state.email}
+          onChangeText={email => this.setState({...this.state, email})}
+          onSubmitEditing={() => this.passwordRef.focus()}
+          ref={(view) => this.emailRef = view}
+        />
+        <AppTextInput
+          secureTextEntry
+          placeholder="digite uma senha"
+          value={this.state.password}
+          onChangeText={password => this.setState({...this.state, password})}
+          onSubmitEditing={() => this.confirmPasswordRef.focus()}
+          ref={(view) => this.passwordRef = view}
+        />
+        <AppTextInput
+          secureTextEntry
+          placeholder="confirme a senha"
+          value={this.state.confirmPassword}
+          onChangeText={confirmPassword => this.setState({...this.state, confirmPassword})}
+          onSubmitEditing={() => this.send()}
+          ref={(view) => this.confirmPasswordRef = view}
+        />
+        <View style={{ flex: 1, justifyContent: 'center', }}>
+          <AppRoundBtn.Text
+            onPress={() => navigate('Home')}
+            size={40}
+          >Ok</AppRoundBtn.Text>
+        </View>
+      </ScrollView>
+    );
+  }
+}

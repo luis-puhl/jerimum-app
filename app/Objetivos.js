@@ -1,13 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text, Alert } from 'react-native';
 
-import { navigationOptions } from './components/Theme';
 import { AppTextInput } from './components/AppTextInput';
 import { AppRoundBtn } from './components/AppRoundBtn';
 
 export class Objetivos extends React.Component {
   static navigationOptions = {
-    ...navigationOptions,
     title: 'Objetivos & informações'
   };
 
@@ -63,7 +61,6 @@ export class Objetivos extends React.Component {
   }
 
   render() {
-    console.log('render');
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
@@ -83,10 +80,7 @@ export class Objetivos extends React.Component {
           </View>
         ))}
         <View style={styles.buttons}>
-          <AppRoundBtn.Text
-            size={40}
-            onPress={() => Alert.alert('You tapped the button!')}
-          >
+          <AppRoundBtn.Text size={40} onPress={() => navigate('Horarios')}>
             Ok
           </AppRoundBtn.Text>
         </View>

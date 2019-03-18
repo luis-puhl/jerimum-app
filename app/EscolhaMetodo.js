@@ -2,12 +2,11 @@ import React from 'react';
 import { StyleSheet, View, Text, Alert, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { colors, navigationOptions } from './components/Theme';
+import { colors } from './components/Theme';
 import { AppRoundBtn } from './components/AppRoundBtn';
 
 export class EscolhaMetodo extends React.Component {
   static navigationOptions = {
-    ...navigationOptions,
     title: 'Qual método pretende usar?',
   };
 

@@ -24,6 +24,19 @@ export const colors = {
 
   terciary: 'steelblue',
   onTerciary: 'white',
+  weekDay: [
+    '#337ab7',
+    '#33ccff',
+    '#009900',
+    '#ffcc00',
+    '#ff6600',
+    '#cc0000',
+    '#993399',
+  ],
+
+  gray: '#777777',
+  onGray: '#fff',
+  weekLine: '#8d99c0',
 }
 
 export const globalStyles = StyleSheet.create({
@@ -33,6 +46,7 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     width: '80%',
+    marginTop: 10,
   },
   textInput: {
     height: 50,
@@ -73,3 +87,20 @@ export const navigationOptions = {
     fontSize: 20,
   },
 };
+
+export const activityIcons = [
+  '',
+  '',
+  '',
+  'md-bed',
+  'ios-bowtie',
+  'ios-book',
+  'ios-business',
+  'ios-cafe',
+  'ios-bus',
+  'ios-cart',
+  'ios-paw',
+  'ios-pint',
+  'ios-bicycle',
+  'md-fitness',
+];

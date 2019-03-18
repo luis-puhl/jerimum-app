@@ -1,13 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, Animated, Keyboard, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 
-import { colors, globalStyles, roundStyle, window, navigationOptions, icon } from './components/Theme';
+import { colors, globalStyles, roundStyle, window, icon } from './components/Theme';
 import { AppRoundBtn } from './components/AppRoundBtn';
 import { AppTextInput } from './components/AppTextInput';
 
 export class Login extends React.Component {
   static navigationOptions = {
-    ...navigationOptions,
     title: 'Login',
   };
 

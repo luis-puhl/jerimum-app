@@ -20,7 +20,6 @@ export function mkAppRoundBtn(WrappedComponent) {
         ...passThroughProps,
         style: {...globalStyles.roundBtnText, ...innerStyle},
       };
-      console.log({containerProps, innerProps})
       return (
         <TouchableOpacity {...containerProps}>
           <WrappedComponent {...innerProps} />
