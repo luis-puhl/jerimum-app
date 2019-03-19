@@ -1,7 +1,7 @@
 import React from 'react';
-import { ScrollView, View, Text, Switch, TouchableOpacity, Button } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, Button } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { Avatar, Badge, Icon, withBadge } from 'react-native-elements'
+import { Badge } from 'react-native-elements'
 
 import { globalStyles, colors, activityIcons, invertColor } from './components/Theme';
 
@@ -108,6 +108,7 @@ export class MateriasHorarios extends React.Component {
           <View style={{flexDirection: 'row'}}>
             <MaterialCommunityIcons name="timer" style={{fontSize: 50, color: colors.gray}} />
             <MaterialCommunityIcons name="bell-ring-outline" style={{fontSize: 50, color: colors.primary}} />
+            <Button title="ciclo" onPress={() => navigate('Ciclo')} />
           </View>
         </View>
         <View style={{flexDirection: 'row', justifyContent: 'space-evenly', margin: 3,}}>

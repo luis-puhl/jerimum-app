@@ -9,6 +9,7 @@ import { ObjetivosScren } from './app/ObjetivosScren';
 import { Horarios, HorariosDetail } from './app/Horarios';
 import { Materias } from './app/Materias';
 import { MateriasHorarios, MateriasHorariosDetail } from './app/MateriasHorarios';
+import { Ciclo } from './app/Ciclo';
 
 /**
  * TODO: Add Navigation (In Progress)
@@ -27,6 +28,7 @@ const MainNavigator = createStackNavigator(
     Materias: {screen: Materias},
     MateriasHorarios: {screen: MateriasHorarios},
     MateriasHorariosDetail: {screen: MateriasHorariosDetail},
+    Ciclo: {screen: Ciclo},
   },
   {
     initialRouteName: 'Login',
