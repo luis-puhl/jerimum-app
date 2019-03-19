@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, DatePickerAndroid, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Alert, Button, ScrollView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { AppTextInput } from './components/AppTextInput';
@@ -12,14 +12,18 @@ export class Materias extends React.Component {
   };
 
   render() {
-    // https://expo.github.io/vector-icons/
+    const { navigate } = this.props.navigation;
     return (
        <ScrollView contentContainerStyle={styles.container}>
           <View style={styles.buttonContainer}>
             <AppRoundBtn.MaterialIcons
-              onPress={() => navigate('Home')}
+              onPress={() => Alert.alert('Tap', 'Hello')}
               size={50}
               name="add"
+              />
+            <Button
+              onPress={() => navigate('MateriasHorarios')}
+              title="Quadro de Estudo"
               />
           </View>
           {
@@ -71,6 +75,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     height: 150,
+    flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
