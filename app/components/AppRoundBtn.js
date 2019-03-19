@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Text } from 'react-native'
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 import { colors, globalStyles, roundStyle } from './Theme';
 
@@ -32,4 +32,5 @@ export function mkAppRoundBtn(WrappedComponent) {
 export const AppRoundBtn = {
   Text: mkAppRoundBtn(Text),
   MaterialCommunityIcons: mkAppRoundBtn(MaterialCommunityIcons),
+  MaterialIcons: mkAppRoundBtn(MaterialIcons),
 };

@@ -1,21 +1,9 @@
 import React from 'react';
-import { ScrollView, View, Text, Switch, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, Switch, TouchableOpacity, Button } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { globalStyles, colors, activityIcons, invertColor } from './components/Theme';
 
-const fakeHours = Array(24).fill(0).map(
-  (v, i) => i.toString().padStart(2, '0') + ':00'
-).reduce(
-  (acc, hour) => ({
-    ...acc,
-    [hour]: Array(7).fill(0).map((v, i) => ({
-      key: `d:${i} ${v.key}`,
-      icon: activityIcons[Math.floor(Math.random() * activityIcons.length)],
-      color: colors.weekDay[Math.floor(Math.random() * colors.weekDay.length)],
-    })),
-  }
-), {});
 const fakeDays = {
   hours: Array(24).fill(0).map(
     (v, i) => i.toString().padStart(2, '0') + ':00'
@@ -89,7 +77,6 @@ export class Horarios extends React.Component {
   };
   days = [22, 23, 24, 25, 26, 27, 28];
   weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-  hours = fakeHours;
 
   constructor(props) {
     super(props);
@@ -106,7 +93,10 @@ export class Horarios extends React.Component {
           <View style={{transform: [{scaleX: -1}]}}>
             <Ionicons name="md-color-wand" style={{fontSize: 50, color: colors.primary}} />
           </View>
-          <Switch value={this.state.auto} onValueChange={(auto) => this.setState(state => ({...state, auto}))} />
+          <View>
+            <Switch value={this.state.auto} onValueChange={(auto) => this.setState(state => ({...state, auto}))} />
+            <Button title="Matérias" onPress={() => navigate('Materias')} />
+          </View>
         </View>
         <View style={{flexDirection: 'row', justifyContent: 'space-evenly', margin: 3,}}>
           <Text style={styles.monthName}>Agosto</Text>

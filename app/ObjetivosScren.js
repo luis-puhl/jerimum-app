@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, DatePickerAndroid, TouchableHighlight, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, DatePickerAndroid, TouchableOpacity } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { AppTextInput } from './components/AppTextInput';
 import { AppRoundBtn } from './components/AppRoundBtn';
@@ -13,50 +14,12 @@ export class ObjetivosScren extends React.Component {
     super(props);
     this.state = {
       area: '',
-      concurso: 'ex.: OAB',
+      concurso: '',
       inicio: new Date(),
-      dataDaProva: new Date(),
-      horasSemana: 1,
-      diasSemana: 1
+      dataProva: new Date(),
+      horasSemanais: '',
+      diasSemanais: ''
     };
-    this.form = [
-      {
-        key: 'area',
-        legenda: 'Área de estudo',
-        value: this.state.area,
-        setValue: area => this.setState({ ...this.state, area }),
-      },
-      {
-        key: 'concurso',
-        legenda: 'Concurso / prova',
-        value: this.state.concurso,
-        setValue: concurso => this.setState({ ...this.state, concurso })
-      },
-      {
-        key: 'inicio',
-        legenda: 'Inicio dos estudos',
-        value: this.state.inicio,
-        setValue: inicio => this.setState({ ...this.state, inicio }),
-      },
-      {
-        key: 'dataProva',
-        legenda: 'Data da prova',
-        value: this.state.dataProva,
-        setValue: dataProva => this.setState({ ...this.state, dataProva })
-      },
-      {
-        key: 'horasSemanais',
-        legenda: 'H. disp por semana',
-        value: this.state.horasSemanais,
-        setValue: horasSemanais => this.setState({ ...this.state, horasSemanais })
-      },
-      {
-        key: 'diasSemanais',
-        legenda: 'Dias disp. por semana',
-        value: this.state.diasSemanais,
-        setValue: diasSemanais => this.setState({ ...this.state, diasSemanais })
-      }
-    ];
   }
 
   validate() {
@@ -69,56 +32,158 @@ export class ObjetivosScren extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-        {this.form.map(({ key, legenda, value, setValue, customJSX }) => {
-          /*
-            <Text style={styles.option}>ciclo</Text>
-          */
-          let item = (
+      <KeyboardAwareScrollView>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={styles.coluna1}>
+            <Text style={styles.legenda}>Área de estudo</Text>
+          </View>
+          <View style={styles.coluna2}>
             <View style={styles.option2}>
               <AppTextInput
-              placeholder={legenda}
-              style={{ width: undefined, height: styles.option2.height, marginTop: 0, }}
-              value={value}
-              onChangeText={setValue}
+                placeholder="Área de estudo"
+                style={{
+                  width: undefined,
+                  height: styles.option2.height,
+                  marginTop: 0
+                }}
+                value={this.state.area}
+                onChangeText={area =>
+                  this.setState(state => ({ ...state, area }))
+                }
               />
             </View>
-          );
-          if (['inicio', 'dataProva'].includes(key)) {
-            item = (
-              <TouchableHighlight
-                onPress={() => DatePickerAndroid.open({date: value, minDate: new Date()}).then(
-                  ({ action, year, month, day }) => {
-                    console.log({ action, year, month, day});
-                    if (action === DatePickerAndroid.dateSetAction) {
-                      setValue(new Date(year, month, day));
-                    }
-                })}
-                underlayColor="white"
-              >
-              <Text style={styles.option2}>
-                {(value || new Date()).toLocaleDateString()}
-              </Text>
-            </TouchableHighlight>
-            );
-          }
-          return (
-            <View key={key} style={{ flex: 1, flexDirection: 'row' }}>
-              <View style={styles.coluna1}>
-                <Text style={styles.legenda}>{legenda}</Text>
-              </View>
-              <View style={styles.coluna2}>
-                {item}
-              </View>
+          </View>
+        </View>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={styles.coluna1}>
+            <Text style={styles.legenda}>Concurso / prova</Text>
+          </View>
+          <View style={styles.coluna2}>
+            <View style={styles.option2}>
+              <AppTextInput
+                placeholder="Concurso / prova"
+                style={{
+                  width: undefined,
+                  height: styles.option2.height,
+                  marginTop: 0
+                }}
+                value={this.state.concurso}
+                onChangeText={concurso =>
+                  this.setState(state => ({ ...state, concurso }))
+                }
+              />
             </View>
-          );
-        })}
+          </View>
+        </View>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={styles.coluna1}>
+            <Text style={styles.legenda}>Inicio dos estudos</Text>
+          </View>
+          <View style={styles.coluna2}>
+            <TouchableOpacity
+              onPress={() =>
+                DatePickerAndroid.open({
+                  date: this.state.inicio,
+                  minDate: new Date()
+                }).then(({ action, year, month, day }) => {
+                  console.log({ action, year, month, day });
+                  if (action === DatePickerAndroid.dateSetAction) {
+                    const inicio = new Date(year, month, day);
+                    this.setState(state => ({ ...state, inicio }));
+                  }
+                })
+              }
+              underlayColor="white"
+            >
+              <Text style={styles.option2}>
+                {this.state.inicio.toLocaleDateString()}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={styles.coluna1}>
+            <Text style={styles.legenda}>Data da prova</Text>
+          </View>
+          <View style={styles.coluna2}>
+            <TouchableOpacity
+              onPress={() =>
+                DatePickerAndroid.open({
+                  date: this.state.dataProva,
+                  minDate: new Date()
+                }).then(({ action, year, month, day }) => {
+                  console.log({ action, year, month, day });
+                  if (action === DatePickerAndroid.dateSetAction) {
+                    const dataProva = new Date(year, month, day);
+                    this.setState(state => ({ ...state, dataProva }));
+                  }
+                })
+              }
+              underlayColor="white"
+            >
+              <Text style={styles.option2}>
+                {this.state.dataProva.toLocaleDateString()}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={styles.coluna1}>
+            <Text style={styles.legenda}>H. disp por semana</Text>
+          </View>
+          <View style={styles.coluna2}>
+            <View style={styles.option2}>
+              <AppTextInput
+                placeholder="H. disp por semana"
+                style={{
+                  width: undefined,
+                  height: styles.option2.height,
+                  marginTop: 0
+                }}
+                value={this.state.horasSemanais}
+                onChangeText={horasSemanais =>
+                  this.setState(state => ({ ...state, horasSemanais }))
+                }
+                keyboardType="numeric"
+              />
+            </View>
+          </View>
+        </View>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={styles.coluna1}>
+            <Text style={styles.legenda}>Dias disp. por semana</Text>
+          </View>
+          <View style={styles.coluna2}>
+            <View style={styles.option2}>
+              <AppTextInput
+                placeholder="Dias disp. por semana"
+                style={{
+                  width: undefined,
+                  height: styles.option2.height,
+                  marginTop: 0
+                }}
+                value={this.state.diasSemanais}
+                onChangeText={diasSemanais =>
+                  this.setState(state => ({ ...state, diasSemanais }))
+                }
+                keyboardType="numeric"
+              />
+            </View>
+          </View>
+        </View>
+
         <View style={styles.buttons}>
-          <AppRoundBtn.Text size={40} onPress={() => navigate('Horarios')}>
+          <AppRoundBtn.Text
+            size={40}
+            onPress={() => {
+              console.log(this.state);
+              navigate('Horarios');
+            }}
+          >
             Ok
           </AppRoundBtn.Text>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
