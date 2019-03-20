@@ -173,6 +173,15 @@ export class ObjetivosScren extends React.Component {
         </View>
 
         <View style={styles.buttons}>
+          <AppRoundBtn.MaterialCommunityIcons
+            size={40}
+            name="trophy"
+            style={{ color: 'silver' }}
+            onPress={() => {
+              console.log(this.state);
+              navigate('Dashboard');
+            }}
+          />
           <AppRoundBtn.Text
             size={40}
             onPress={() => {
@@ -252,6 +261,7 @@ const styles = StyleSheet.create({
   },
   buttons: {
     flex: 2,
+    margin: 10,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center'
