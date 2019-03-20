@@ -11,6 +11,7 @@ import { Materias } from './app/Materias';
 import { MateriasHorarios, MateriasHorariosDetail } from './app/MateriasHorarios';
 import { Ciclo } from './app/Ciclo';
 import { Timer } from './app/Timer';
+import { Dashboard } from './app/Dashboard';
 
 /**
  * TODO: Add Navigation (In Progress)
@@ -31,6 +32,7 @@ const MainNavigator = createStackNavigator(
     MateriasHorariosDetail: {screen: MateriasHorariosDetail},
     Ciclo: {screen: Ciclo},
     Timer: {screen: Timer},
+    Dashboard: {screen: Dashboard},
   },
   {
     initialRouteName: 'Login',

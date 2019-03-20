@@ -37,6 +37,14 @@ export const colors = {
   gray: '#777777',
   onGray: '#fff',
   weekLine: '#8d99c0',
+
+  flags: {
+    green: '#009900',
+    almostGreen: '#33cc00',
+    yellow: '#ffcc00',
+    ciclo: '#00cccc',
+    estudo: '#993399',
+  }
 }
 export function invertColor(color) {
   // const i = colors.weekDay.indexOf(color);
