@@ -297,6 +297,128 @@ class DashMateria extends React.Component {
   }
 }
 
+class DashDias extends React.Component {
+  render() {
+    const { estudados, decorridos, prova } = { estudados: '20', decorridos: '22', prova: '265' };
+    return (
+      <View>
+        <View
+          style={{
+            borderBottomWidth: 2,
+            borderBottomColor: colors.primary,
+            alignItems: 'center'
+          }}
+          >
+          <Text style={stylesDias.text}>DESEMPENHO EM DIAS</Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            flex: 1,
+            marginVertical: 20,
+            marginTop: 30
+          }}
+          >
+          <View style={stylesDias.coluna1}>
+            <Text style={stylesDias.legenda}>Estudados</Text>
+          </View>
+          <View style={stylesDias.coluna2}>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center',}}>
+              <Text style={{alignItems: 'center', textAlign: 'center'}}>{estudados}</Text>
+              <MaterialCommunityIcons
+                style={{ width: '30%', color: colors.gray }}
+                size={40}
+                name="calendar-today"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            flex: 1,
+            marginVertical: 20,
+            marginTop: 30
+          }}
+          >
+          <View style={stylesDias.coluna1}>
+            <Text style={stylesDias.legenda}>Decorridos</Text>
+          </View>
+          <View style={stylesDias.coluna2}>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center',}}>
+              <Text style={{alignItems: 'center', textAlign: 'center'}}>{decorridos}</Text>
+              <MaterialCommunityIcons
+                style={{ width: '30%', color: colors.gray }}
+                size={40}
+                name="calendar-today"
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            flex: 1,
+            marginVertical: 20,
+            marginTop: 30
+          }}
+          >
+          <View style={stylesDias.coluna1}>
+            <Text style={stylesDias.legenda}>Para Prova</Text>
+          </View>
+          <View style={stylesDias.coluna2}>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center',}}>
+              <Text style={{alignItems: 'center', textAlign: 'center'}}>{prova}</Text>
+              <MaterialCommunityIcons
+                style={{ width: '30%', color: colors.gray }}
+                size={40}
+                name="calendar-today"
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  }
+}
+
+const stylesDias = StyleSheet.create({
+  coluna2: {
+    marginLeft: 10,
+    flex: 3
+  },
+  coluna1: {
+    flex: 5,
+    alignItems: 'center'
+  },
+  legenda: {
+    width: '100%',
+    textAlign: 'center',
+    borderBottomWidth: 1,
+    borderStyle: 'dotted',
+    alignItems: 'center',
+    fontSize: 18
+  },
+  lines: {
+    height: 40,
+    paddingVertical: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center'
+  },
+  textContainer: {
+    flex: 4
+  },
+  siglaContainer: {
+    flex: 1
+  },
+  text: {
+    textAlign: 'center',
+    color: colors.primary,
+    fontSize: 20
+  }
+});
+
 export class Dashboard extends React.Component {
   static navigationOptions = {
     title: 'Dashboard'
@@ -362,6 +484,8 @@ export class Dashboard extends React.Component {
               return <DashHoras />;
             case DASH_MATERIA:
               return <DashMateria />;
+            case DASH_DIAS:
+              return <DashDias />;
             default:
               return <Text />;
           }
