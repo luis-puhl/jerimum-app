@@ -419,6 +419,98 @@ const stylesDias = StyleSheet.create({
   }
 });
 
+
+class DashChamp extends React.Component {
+  render() {
+    return (
+      <View>
+        <View style={{
+          borderBottomWidth: 2,
+          borderBottomColor: colors.primary,
+          alignItems: 'center',
+        }}>
+          <Text style={stylesChamp.text}>CHAMPION</Text>
+        </View>
+        <View style={{ flexDirection: 'row', flex: 1, marginVertical: 20, marginTop: 30, }}>
+          <View style={stylesChamp.coluna1}>
+            <Text style={stylesChamp.legenda}>Data Aprovação</Text>
+          </View>
+          <View style={stylesChamp.coluna2}>
+            <View flexDirection='row'>
+              <MaterialCommunityIcons style={{ width: '20%', color: colors.gray }} size={35} name="calendar-today" />
+            </View>
+          </View>
+        </View>
+        <View style={{ flexDirection: 'row', flex: 1, marginVertical: 20, }}>
+          <View style={stylesChamp.coluna1}>
+            <Text style={stylesChamp.legenda}>Auto Avaliação</Text>
+          </View>
+          <View style={stylesChamp.coluna2}>
+            <View flexDirection='row'>
+              <MaterialCommunityIcons style={{ marginRight: 20, width: '20%', color: 'gold' }} size={35} name="trophy" />
+              <MaterialCommunityIcons style={{ marginRight: 20, width: '20%', color: 'silver' }} size={35} name="trophy" />
+              <MaterialCommunityIcons style={{ width: '20%', color: 'brown' }} size={35} name="trophy" />
+            </View>
+          </View>
+        </View>
+        <View style={{ flexDirection: 'row', flex: 1, marginVertical: 20, }}>
+          <View style={stylesChamp.coluna1}>
+            <Text style={stylesChamp.legenda}>Compartilhar</Text>
+          </View>
+          <View style={stylesChamp.coluna2}>
+            <View flexDirection='row'>
+              <MaterialCommunityIcons style={{ width: '20%', marginRight: 10, color: 'lightgreen' }} size={35} name="whatsapp" />
+              <MaterialCommunityIcons style={{ width: '20%', marginRight: 10, color: 'blue' }} size={35} name="facebook-box" />
+              <MaterialCommunityIcons style={{ width: '20%', color: 'purple' }} size={35} name="instagram" />
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  }
+}
+
+const stylesChamp = StyleSheet.create({
+  coluna2: {
+    marginLeft: 10,
+    flex: 7,
+  },
+  coluna1: {
+    borderBottomWidth: 1,
+    borderStyle: 'dotted',
+    flex: 7,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  legenda: {
+    alignItems: 'center',
+    fontSize: 18,
+  },
+  lines: {
+    height: 40,
+    paddingVertical: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  textContainer: {
+    flex: 4,
+  },
+  siglaContainer: {
+    flex: 1,
+  },
+  text: {
+    textAlign: 'center',
+    color: colors.primary,
+    fontSize: 20,
+  },
+  text2: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 20,
+  },
+});
+
 export class Dashboard extends React.Component {
   static navigationOptions = {
     title: 'Dashboard'
@@ -486,6 +578,8 @@ export class Dashboard extends React.Component {
               return <DashMateria />;
             case DASH_DIAS:
               return <DashDias />;
+            case DASH_CHAMP:
+              return <DashChamp />;
             default:
               return <Text />;
           }
