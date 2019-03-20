@@ -26,27 +26,23 @@ const DASH_DIAS = 'DIAS';
 const DASH_CHAMP = 'CHAMP';
 
 class DashHoras extends React.Component {
-  static navigationOptions = {
-    title: 'Dashboard'
-  };
-
   render() {
     const metas = {
-      dia:     { name: 'Dia',           atual: 4,   esperado: 4, },
-      semana:  { name: 'Semana',        atual: 20,  esperado: 25, },
-      mes:     { name: 'Mês',           atual: 75,  esperado: 110, },
-      ciclos:  { name: 'Ciclos',        atual: 110, esperado: 110, },
-      estudos: { name: 'Q. de Estudos', atual: 110, esperado: 110, },
+      dia: { name: 'Dia', atual: 4, esperado: 4 },
+      semana: { name: 'Semana', atual: 20, esperado: 25 },
+      mes: { name: 'Mês', atual: 75, esperado: 110 },
+      ciclos: { name: 'Ciclos', atual: 110, esperado: 110 },
+      estudos: { name: 'Q. de Estudos', atual: 110, esperado: 110 }
     };
     const metricas = Object.entries(metas).map(meta => {
       const key = meta[0];
       meta = meta[1];
-      const ratio = (meta.atual / meta.esperado);
+      const ratio = meta.atual / meta.esperado;
       let bgColor = colors.flags.green;
-      if (ratio <= .99) {
+      if (ratio <= 0.99) {
         bgColor = colors.flags.almostGreen;
       }
-      if (ratio <= .75) {
+      if (ratio <= 0.75) {
         bgColor = colors.flags.yellow;
       }
       if (key === 'ciclos') {
@@ -62,11 +58,12 @@ class DashHoras extends React.Component {
         style: {
           width: (ratio * 100).toFixed(0) + '%',
           backgroundColor: bgColor,
+          color: invertColor(bgColor),
           minWidth: 50,
-          maxWidth: '100%',
-        },
+          maxWidth: '100%'
+        }
       };
-    })
+    });
     return (
       <View>
         <View
@@ -76,81 +73,229 @@ class DashHoras extends React.Component {
             alignItems: 'center'
           }}
         >
-          <Text style={styles1.text}>DESEMPENHO EM HORAS</Text>
+          <Text
+            style={{
+              textAlign: 'center',
+              color: colors.primary,
+              fontSize: 20
+            }}
+          >
+            DESEMPENHO EM HORAS
+          </Text>
         </View>
-        {
-          metricas.map((metrica, index) => (
-            <View key={'metrica' + index} style={{ flexDirection: 'row', flex: 1, marginVertical: 5 }}>
-              <View style={styles1.coluna1}>
-                <Text style={styles1.legenda}>{metrica.name}</Text>
-              </View>
-              <View style={styles1.coluna2}>
-                <View style={[styles1.option, metrica.style]}>
-                  <Text style={styles1.text2}>{metrica.value}</Text>
-                </View>
+        {metricas.map((metrica, index) => (
+          <View
+            key={'metrica' + index}
+            style={{ flexDirection: 'row', flex: 1, marginVertical: 5 }}
+          >
+            <View
+              style={{
+                borderBottomWidth: 1,
+                borderStyle: 'dotted',
+                marginBottom: 5,
+                marginLeft: 10,
+                flex: 5,
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <Text
+                style={{
+                  alignItems: 'center',
+                  fontSize: 18,
+                  marginTop: 15
+                }}
+              >
+                {metrica.name}
+              </Text>
+            </View>
+            <View style={{ marginLeft: 10, flex: 7 }}>
+              <View
+                style={[
+                  {
+                    textAlign: 'center',
+                    height: 30,
+                    borderTopRightRadius: 50,
+                    borderBottomRightRadius: 50,
+                    borderBottomLeftRadius: 10,
+                    borderTopLeftRadius: 10,
+                    fontSize: 25,
+                    marginTop: 15,
+                    color: 'white'
+                  },
+                  metrica.style
+                ]}
+              >
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    color: 'white',
+                    fontSize: 20
+                  }}
+                >
+                  {metrica.value}
+                </Text>
               </View>
             </View>
-          ))
-        }
+          </View>
+        ))}
       </View>
     );
   }
 }
-const styles1 = StyleSheet.create({
-  option: {
-    textAlign: 'center',
-    height: 30,
-    borderTopRightRadius: 50,
-    borderBottomRightRadius: 50,
-    borderBottomLeftRadius: 10,
-    borderTopLeftRadius: 10,
-    fontSize: 25,
-    marginTop: 15,
-    color: 'white'
-  },
-  coluna2: {
-    marginLeft: 10,
-    flex: 7,
-  },
-  coluna1: {
-    borderBottomWidth: 1,
-    borderStyle: 'dotted',
-    marginBottom: 5,
-    marginLeft: 10,
-    flex: 5,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  legenda: {
-    alignItems: 'center',
-    fontSize: 18,
-    marginTop: 15
-  },
-  lines: {
-    height: 40,
-    paddingVertical: 5,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-  },
-  textContainer: {
-    flex: 4,
-  },
-  siglaContainer: {
-    flex: 1,
-  },
-  text: {
-    textAlign: 'center',
-    color: colors.primary,
-    fontSize: 20,
-  },
-  text2: {
-    textAlign: 'center',
-    color: 'white',
-    fontSize: 20,
-  },
-});
 
+class DashMateria extends React.Component {
+  render() {
+    const materias = [
+      {
+        sigla: 'DA',
+        color: colors.weekDay[0],
+        values: ['0:45', '1:30', '6:00', '72:00']
+      },
+      {
+        sigla: 'LP',
+        color: colors.weekDay[1],
+        values: ['0:15', '1:00', '4:00', '48:00']
+      },
+      {
+        sigla: 'DT',
+        color: colors.weekDay[2],
+        values: ['1:30', '3:30', '14:00', '108:00']
+      },
+      {
+        sigla: 'DP',
+        color: colors.weekDay[3],
+        values: ['0:30', '1:15', '5:00', '110:00']
+      },
+      {
+        sigla: 'RL',
+        color: colors.weekDay[5],
+        values: ['0:00', '3:00', '12:00', '134:00']
+      },
+      {
+        sigla: 'AF',
+        color: colors.weekDay[6],
+        values: ['0:00', '2:30', '11:40', '125:00']
+      }
+    ];
+    return (
+      <View>
+        <View
+          style={{
+            borderBottomWidth: 2,
+            borderBottomColor: colors.primary,
+            alignItems: 'center'
+          }}
+        >
+          <Text
+            style={{
+              textAlign: 'center',
+              color: colors.primary,
+              fontSize: 20
+            }}
+          >
+            DESEMPENHO POR MATÉRIA
+          </Text>
+        </View>
+        <View style={{ flexDirection: 'row', flex: 1, marginVertical: 5 }}>
+          <Text style={{ flex: 1, justifyContent: 'center' }} />
+          <Badge
+            value={'D'}
+            containerStyle={{ flex: 1, justifyContent: 'center' }}
+            badgeStyle={{
+              backgroundColor: 'steelblue',
+              width: 40,
+              height: 35
+            }}
+            textStyle={{
+              fontSize: 25,
+              textAlign: 'center',
+              color: 'white'
+            }}
+          />
+          <Badge
+            value={'S'}
+            containerStyle={{ flex: 1, justifyContent: 'center' }}
+            badgeStyle={{
+              backgroundColor: 'steelblue',
+              width: 40,
+              height: 35
+            }}
+            textStyle={{
+              fontSize: 25,
+              textAlign: 'center',
+              color: 'white'
+            }}
+          />
+          <Badge
+            value={'M'}
+            containerStyle={{ flex: 1, justifyContent: 'center' }}
+            badgeStyle={{
+              backgroundColor: 'steelblue',
+              width: 40,
+              height: 35
+            }}
+            textStyle={{
+              fontSize: 25,
+              textAlign: 'center',
+              color: 'white'
+            }}
+          />
+          <Badge
+            value={'T'}
+            containerStyle={{ flex: 1, justifyContent: 'center' }}
+            badgeStyle={{
+              backgroundColor: 'steelblue',
+              width: 40,
+              height: 35
+            }}
+            textStyle={{
+              fontSize: 25,
+              textAlign: 'center',
+              color: 'white'
+            }}
+          />
+        </View>
+        {materias.map(linha => (
+          <View
+            key={linha.sigla}
+            style={{ flexDirection: 'row', flex: 1, marginVertical: 5 }}
+          >
+            <Badge
+              value={linha.sigla}
+              containerStyle={{ flex: 1, justifyContent: 'center' }}
+              badgeStyle={{
+                backgroundColor: linha.color,
+                height: 30
+              }}
+              textStyle={{
+                fontSize: 20,
+                textAlign: 'center',
+                color: invertColor(linha.color)
+              }}
+            />
+            {linha.values.map((value, i) => (
+              <Text
+                key={linha.sigla + i}
+                style={{
+                  flex: 1,
+                  margin: 5,
+                  paddingTop: 5,
+                  textAlign: 'center',
+                  alignContent: 'center',
+                  fontSize: 18,
+                  color: linha.color
+                }}
+              >
+                {value}
+              </Text>
+            ))}
+          </View>
+        ))}
+      </View>
+    );
+  }
+}
 
 export class Dashboard extends React.Component {
   static navigationOptions = {
@@ -195,7 +340,7 @@ export class Dashboard extends React.Component {
                 this.setState(state => ({ ...state, selected: icon.dash }))
               }
               style={{
-                width: '20%',
+                width: '20%'
               }}
             >
               <MaterialCommunityIcons
@@ -211,7 +356,16 @@ export class Dashboard extends React.Component {
             </TouchableOpacity>
           ))}
         </View>
-        <DashHoras></DashHoras>
+        {(() => {
+          switch (this.state.selected) {
+            case DASH_HORAS:
+              return <DashHoras />;
+            case DASH_MATERIA:
+              return <DashMateria />;
+            default:
+              return <Text />;
+          }
+        })()}
       </ScrollView>
     );
   }
