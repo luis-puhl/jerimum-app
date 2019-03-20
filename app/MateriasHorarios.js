@@ -106,7 +106,9 @@ export class MateriasHorarios extends React.Component {
             <Ionicons name="md-color-wand" style={{fontSize: 50, color: colors.primary}} />
           </View>
           <View style={{flexDirection: 'row'}}>
-            <MaterialCommunityIcons name="timer" style={{fontSize: 50, color: colors.gray}} />
+            <TouchableOpacity onPress={() => navigate('Timer')}>
+              <MaterialCommunityIcons name="timer" style={{fontSize: 50, color: colors.gray}} />
+            </TouchableOpacity>
             <MaterialCommunityIcons name="bell-ring-outline" style={{fontSize: 50, color: colors.primary}} />
             <Button title="ciclo" onPress={() => navigate('Ciclo')} />
           </View>
