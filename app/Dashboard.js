@@ -449,7 +449,7 @@ class DashChamp extends React.Component {
             <View flexDirection='row'>
               <MaterialCommunityIcons style={{ marginRight: 20, width: '20%', color: 'gold' }} size={35} name="trophy" />
               <MaterialCommunityIcons style={{ marginRight: 20, width: '20%', color: 'silver' }} size={35} name="trophy" />
-              <MaterialCommunityIcons style={{ width: '20%', color: 'brown' }} size={35} name="trophy" />
+              <MaterialCommunityIcons style={{ width: '20%', color: colors.bronze }} size={35} name="trophy" />
             </View>
           </View>
         </View>

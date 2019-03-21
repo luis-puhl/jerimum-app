@@ -44,7 +44,8 @@ export const colors = {
     yellow: '#ffcc00',
     ciclo: '#00cccc',
     estudo: '#993399',
-  }
+  },
+  bronze: '#CD7F32',
 }
 export function invertColor(color) {
   // const i = colors.weekDay.indexOf(color);
