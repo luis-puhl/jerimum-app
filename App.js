@@ -4,7 +4,7 @@ import { navigationOptions } from './app/components/Theme';
 
 import { Login } from './app/Login';
 import { EscolhaMetodo } from './app/EscolhaMetodo';
-import { Cadastro1, Cadastro2 } from './app/Cadastro';
+import { Cadastro } from './app/Cadastro';
 import { ObjetivosScren } from './app/ObjetivosScren';
 import { Horarios, HorariosDetail } from './app/Horarios';
 import { Materias } from './app/Materias';
@@ -22,8 +22,7 @@ const MainNavigator = createStackNavigator(
   {
     Login: {screen: Login},
     EscolhaMetodo: {screen: EscolhaMetodo},
-    Cadastro1: {screen: Cadastro1},
-    Cadastro2: {screen: Cadastro2},
+    Cadastro: {screen: Cadastro},
     Objetivos: {screen: ObjetivosScren},
     Horarios: {screen: Horarios},
     HorariosDetail: {screen: HorariosDetail},

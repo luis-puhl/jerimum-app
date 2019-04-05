@@ -52,7 +52,7 @@ export class Login extends React.Component {
   }
   cadastrar = () => {
     console.log(this.state);
-    this.props.navigation.navigate('Cadastro1');
+    this.props.navigation.navigate('Cadastro');
   }
 
   /**
