@@ -40,15 +40,17 @@ export class Login extends React.Component {
     this.keyboardWillHideSub.remove();
   }
 
-  setUsername = (username) => {
-    this.setState(previousState => ({...previousState, username}));
-  }
-  setPassword = (password) => {
-    this.setState(previousState => ({...previousState, password}));
-  }
-  entrar = () => {
+  entrar = async () => {
     console.log(this.state);
-    this.props.navigation.navigate('EscolhaMetodo');
+    const {email, password } = this.state;
+    try {
+      const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+      if (userCredential) {
+        this.props.navigation.navigate('EscolhaMetodo');
+      }
+    } catch (error) {
+      
+    }
   }
   cadastrar = () => {
     console.log(this.state);
@@ -63,16 +65,16 @@ export class Login extends React.Component {
       <KeyboardAvoidingView style={globalStyles.container} behavior="padding">
         <Animated.Image source={icon.source} style={{...icon.style, height: this.imageHeight }} />
         <AppTextInput
-          placeholder="Login"
+          placeholder="Email"
           value={this.state.username}
-          onChangeText={this.setUsername}
+          onChangeText={(username) => this.setState(previousState => ({...previousState, username}))}
           onSubmitEditing={() => this.pwdInputRef.focus()}
         />
         <AppTextInput
           secureTextEntry
           placeholder="Senha"
           value={this.state.password}
-          onChangeText={this.setPassword}
+          onChangeText={(password) => this.setState(previousState => ({...previousState, password}))}
           ref={(view) => this.pwdInputRef = view}
           onSubmitEditing={this.entrar}
         />
