@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text, Alert, Button, ScrollView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { MaterialCommunityIcons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { MaterialCommunityIcons, MaterialIcons, FontAwesome } from 'react-native-vector-icons';
 import { Badge } from 'react-native-elements'
 
-import { AppTextInput } from './components/AppTextInput';
-import { AppRoundBtn } from './components/AppRoundBtn';
-import { colors, invertColor } from './components/Theme';
+import { AppTextInput } from '../components/AppTextInput';
+import { AppRoundBtn } from '../components/AppRoundBtn';
+import { colors, invertColor } from '../components/Theme';
 
 export class Ciclo extends React.Component {
   static navigationOptions = {

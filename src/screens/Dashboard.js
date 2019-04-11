@@ -13,12 +13,12 @@ import {
   MaterialCommunityIcons,
   MaterialIcons,
   FontAwesome
-} from '@expo/vector-icons';
+} from 'react-native-vector-icons';
 import { Badge } from 'react-native-elements';
 
-import { AppTextInput } from './components/AppTextInput';
-import { AppRoundBtn } from './components/AppRoundBtn';
-import { colors, invertColor } from './components/Theme';
+import { AppTextInput } from '../components/AppTextInput';
+import { AppRoundBtn } from '../components/AppRoundBtn';
+import { colors, invertColor } from '../components/Theme';
 
 const DASH_HORAS = 'HORAS';
 const DASH_MATERIA = 'MATERIA';

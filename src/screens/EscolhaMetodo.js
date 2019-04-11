@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, Alert, TouchableOpacity } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from 'react-native-vector-icons';
 
-import { colors } from './components/Theme';
-import { AppRoundBtn } from './components/AppRoundBtn';
+import { colors } from '../components/Theme';
+import { AppRoundBtn } from '../components/AppRoundBtn';
 
 export class EscolhaMetodo extends React.Component {
   static navigationOptions = {

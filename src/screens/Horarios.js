@@ -1,8 +1,8 @@
 import React from 'react';
 import { ScrollView, View, Text, Switch, TouchableOpacity, Button } from 'react-native';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from 'react-native-vector-icons';
 
-import { globalStyles, colors, activityIcons, invertColor } from './components/Theme';
+import { globalStyles, colors, activityIcons, invertColor } from '../components/Theme';
 
 const fakeDays = {
   hours: Array(24).fill(0).map(

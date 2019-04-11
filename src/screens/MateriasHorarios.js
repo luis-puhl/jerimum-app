@@ -1,9 +1,9 @@
 import React from 'react';
 import { ScrollView, View, Text, TouchableOpacity, Button } from 'react-native';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from 'react-native-vector-icons';
 import { Badge } from 'react-native-elements'
 
-import { globalStyles, colors, activityIcons, invertColor } from './components/Theme';
+import { globalStyles, colors, activityIcons, invertColor } from '../components/Theme';
 
 const siglas = ['IN', 'DA', 'LP', 'DT', 'DP', 'RL', 'AF',];
 const fakeDays = {
