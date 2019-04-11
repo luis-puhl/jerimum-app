@@ -1,31 +1,58 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
-  "repository": "git@github.com:luis-puhl/jerimum-app.git",
+  "name": "jerimum-app",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "start": "expo start",
-    "build": "expo build:android",
-    "android": "expo start --android",
-    "eject": "expo eject"
+    "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
+    "android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "test": "jest"
   },
   "dependencies": {
-    "expo": "^32.0.0",
-    "expo-firebase-auth": "^2.0.0",
-    "expo-firebase-crashlytics": "^2.0.0",
-    "expo-firebase-database": "^2.0.0",
-    "react": "16.5.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react": "16.8.3",
+    "react-native": "0.59.4",
     "react-native-elements": "^1.1.0",
     "react-native-firebase": "^5.3.0",
+    "react-native-gesture-handler": "^1.1.0",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
+    "react-native-linear-gradient": "^2.5.4",
+    "react-native-responsive-fontsize": "^0.1.8",
+    "react-native-size-matters": "^0.1.7",
+    "react-native-svg": "^9.3.7",
     "react-native-svg-charts": "^5.2.0",
-    "react-navigation": "^3.3.2",
+    "react-native-typescript-transformer": "^1.2.12",
+    "react-native-vector-icons": "^6.4.2",
+    "react-navigation": "^3.6.1",
+    "react-redux": "^7.0.1",
     "react-redux-firebase": "^2.2.6",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "styled-components": "^4.2.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "babel-preset-expo": "^5.0.0",
-    "eslint": "^5.15.2"
+    "@babel/core": "^7.4.3",
+    "@babel/runtime": "^7.4.3",
+    "@types/jest": "^24.0.11",
+    "@types/react": "^16.8.13",
+    "@types/react-native": "^0.57.42",
+    "@types/react-navigation": "^3.0.6",
+    "@types/react-test-renderer": "^16.8.1",
+    "babel-jest": "^24.7.1",
+    "babel-preset-react-native": "^5.0.2",
+    "husky": "^1.3.1",
+    "jest": "^24.7.1",
+    "lint-staged": "^8.1.5",
+    "metro-react-native-babel-preset": "^0.53.1",
+    "prettier": "^1.16.4",
+    "react-test-renderer": "16.8.3",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.15.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.4.3"
   },
-  "private": true
+  "jest": {
+    "preset": "react-native"
+  }
 }
