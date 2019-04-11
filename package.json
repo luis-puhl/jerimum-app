@@ -5,6 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
     "android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "build": "./node_modules/.bin/react-native bundle --entry-file index.js --bundle-output ./android/app/build/generated/assets/react/release/index.android.bundle",
+    "release": "./android/gradlew.bat assembleRelease",
     "test": "jest"
   },
   "dependencies": {
