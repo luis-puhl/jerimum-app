@@ -8,7 +8,7 @@
     "devtools": "./node_modules/.bin/react-devtools &",
     "log": "./node_modules/.bin/react-native log-android",
     "shake": "adb shell input keyevent 82",
-    "build": "./node_modules/.bin/react-native bundle --entry-file index.js --bundle-output ./android/app/build/generated/assets/react/release/index.android.bundle",
+    "build": "./node_modules/.bin/react-native bundle --entry-file index.js --bundle-output `pwd`/android/app/build/generated/assets/react/release/index.android.bundle",
     "apk": "cd android && ./gradlew assembleRelease",
     "hs": "./node_modules/.bin/http-server ./android/app/build/outputs/apk",
     "test": "jest"
