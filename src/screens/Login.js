@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Animated, Keyboard, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Animated, Keyboard, KeyboardAvoidingView, TouchableOpacity, Button } from 'react-native';
 
 import { colors, globalStyles, roundStyle, window, icon } from '../components/Theme';
+import { ButtonComp } from '../components'
 import { AppRoundBtn } from '../components/AppRoundBtn';
 import { AppTextInput } from '../components/AppTextInput';
 
@@ -86,6 +87,7 @@ export class Login extends React.Component {
             cadastrar
           </AppRoundBtn.Text>
         </View>
+        <ButtonComp onPress={() => this.props.navigation.navigate('About')} title="sobre"/>
       </KeyboardAvoidingView>
     );
   }

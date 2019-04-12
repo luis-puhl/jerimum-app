@@ -2,6 +2,7 @@ import { createAppContainer, createStackNavigator } from 'react-navigation'
 import { THEME_BG_COLOR } from '../config/Colors'
 
 // Import Screens
+// tslint:disable: ordered-imports
 import { WelcomeScreen } from '../screens/WelcomeScreen';
 import { OtherScreen } from '../screens/OtherScreen';
 import { Login } from '../screens/Login';
@@ -14,6 +15,7 @@ import { MateriasHorarios, MateriasHorariosDetail } from '../screens/MateriasHor
 import { Ciclo } from '../screens/Ciclo';
 import { Timer } from '../screens/Timer';
 import { Dashboard } from '../screens/Dashboard';
+import { About } from '../screens/About';
 import { navigationOptions } from '../components/Theme';
 
 export const AppNavigator = createStackNavigator(
@@ -32,12 +34,13 @@ export const AppNavigator = createStackNavigator(
     Ciclo,
     Timer,
     Dashboard,
+    About,
   },
   {
     ...navigationOptions,
-    initialRouteName: 'WelcomeScreen',
-    // initialRouteName: 'Login',
-    cardStyle: { backgroundColor: THEME_BG_COLOR },
+    // initialRouteName: 'WelcomeScreen',
+    initialRouteName: 'Login',
+    // cardStyle: { backgroundColor: THEME_BG_COLOR },
   },
 )
 
