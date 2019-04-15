@@ -10,10 +10,14 @@
     "shake": "adb shell input keyevent 82",
     "build": "./node_modules/.bin/react-native bundle --entry-file index.js --bundle-output ./android/app/build/generated/assets/react/release/index.android.bundle",
     "apk": "cd android && ./gradlew assembleRelease",
+    "apk:debug": "cd android && ./gradlew assembleRelease",
+    "emulator": "emulator -avd Pixel_2_API_28",
     "hs": "./node_modules/.bin/http-server ./android/app/build/outputs/apk",
-    "test": "jest"
+    "test": "jest",
+    "clean": "sh -f ./clean.sh"
   },
   "dependencies": {
+    "firebase": "^5.9.4",
     "react": "16.8.3",
     "react-native": "0.59.4",
     "react-native-elements": "^1.1.0",
