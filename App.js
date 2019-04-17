@@ -1,17 +1,17 @@
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
-import { navigationOptions } from './app/components/Theme';
+import { navigationOptions } from './src/components/Theme';
 
-import { Login } from './app/Login';
-import { EscolhaMetodo } from './app/EscolhaMetodo';
-import { Cadastro } from './app/Cadastro';
-import { ObjetivosScren } from './app/ObjetivosScren';
-import { Horarios, HorariosDetail } from './app/Horarios';
-import { Materias } from './app/Materias';
-import { MateriasHorarios, MateriasHorariosDetail } from './app/MateriasHorarios';
-import { Ciclo } from './app/Ciclo';
-import { Timer } from './app/Timer';
-import { Dashboard } from './app/Dashboard';
+import { Login } from './src/Login';
+import { EscolhaMetodo } from './src/EscolhaMetodo';
+import { Cadastro } from './src/Cadastro';
+import { ObjetivosScren } from './src/ObjetivosScren';
+import { Horarios, HorariosDetail } from './src/Horarios';
+import { Materias } from './src/Materias';
+import { MateriasHorarios, MateriasHorariosDetail } from './src/MateriasHorarios';
+import { Ciclo } from './src/Ciclo';
+import { Timer } from './src/Timer';
+import { Dashboard } from './src/Dashboard';
 
 /**
  * TODO: Add Navigation (In Progress)
