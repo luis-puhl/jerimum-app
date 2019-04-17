@@ -14,23 +14,16 @@ export default class App extends React.PureComponent<Props> {
 
   componentDidMount = async () => {
     try {
-      console.log('');
-      console.log('init');
-      console.log('');
-      console.log({
-        firebase,
-      });
       const app = firebase.initializeApp(config);
-      const providers = await firebase.auth().fetchProvidersForEmail('none@gmail.com');
+      const providers = await firebase.auth().signInAnonymously();
       const ref = await firebase.database().ref(`running-app`);
       ref.push({
         timestamp: Date.now(),
-        Platform,
+        Platform: [
+          Platform.OS,
+          Platform.Version,
+        ],
       })
-      console.log({firebase: {
-        app, providers, ref,
-      }});
-      // await firebaseRN.analytics().logEvent('app did mount');
     } catch (error) {
       console.log({firebaseError: error});
     }

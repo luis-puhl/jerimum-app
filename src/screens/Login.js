@@ -46,12 +46,11 @@ export class Login extends React.Component {
     const {email, password } = this.state;
     try {
       const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-      if (userCredential) {
-        this.props.navigation.navigate('EscolhaMetodo');
-      }
+      console.log({userCredential});
     } catch (error) {
-      
+      console.log({error});
     }
+    this.props.navigation.navigate('EscolhaMetodo');
   }
   cadastrar = () => {
     console.log(this.state);
