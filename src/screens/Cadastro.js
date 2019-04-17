@@ -23,6 +23,7 @@ export class Cadastro extends React.Component {
   }
   
   send = async () => {
+    const { navigate, popToTop } = this.props.navigation;
     console.log(this.state);
     const {email, nome, idade, pais, estado, password } = this.state;
     try {
@@ -33,9 +34,9 @@ export class Cadastro extends React.Component {
         return popToTop();
       }
     } catch (error) {
-      
+      console.log(error);
     }
-    // error
+    popToTop();
   }
 
   render = () => {

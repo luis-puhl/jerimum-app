@@ -41,6 +41,12 @@ export class Login extends React.Component {
     this.keyboardWillHideSub.remove();
   }
 
+  setUsername = (username) => {
+    this.setState(previousState => ({...previousState, username}));
+  }
+  setPassword = (password) => {
+    this.setState(previousState => ({...previousState, password}));
+  }
   entrar = async () => {
     console.log(this.state);
     const {email, password } = this.state;
@@ -67,14 +73,14 @@ export class Login extends React.Component {
         <AppTextInput
           placeholder="Email"
           value={this.state.username}
-          onChangeText={(username) => this.setState(previousState => ({...previousState, username}))}
+          onChangeText={this.setUsername}
           onSubmitEditing={() => this.pwdInputRef.focus()}
         />
         <AppTextInput
           secureTextEntry
           placeholder="Senha"
           value={this.state.password}
-          onChangeText={(password) => this.setState(previousState => ({...previousState, password}))}
+          onChangeText={this.setPassword}
           ref={(view) => this.pwdInputRef = view}
           onSubmitEditing={this.entrar}
         />
