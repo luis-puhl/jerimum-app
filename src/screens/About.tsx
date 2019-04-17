@@ -2,8 +2,6 @@ import React, { useCallback } from 'react'
 import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { NavigationScreenComponent, NavigationScreenProps } from 'react-navigation'
 
-import firebase from 'react-native-firebase';
-
 import { ButtonComp } from '../components'
 import { ThemeStyles } from '../config'
 import { THEME_BG_COLOR, THEME_BUTTON_COLOR, THEME_FG_COLOR } from '../config/Colors'
@@ -20,12 +18,12 @@ export class About extends React.Component {
       'admob', 'analytics', 'auth', 'config', 'crashlytics', 'database', 'firestore',
       'functions', 'iid', 'invites', 'links', 'messaging', 'notifications', 'perf', 'storage',
     ].map((moduleName: string) => {
-      if (!firebase[moduleName].nativeModuleExists) {
+      // if (!firebase[moduleName].nativeModuleExists) {
         return;
-      }
+      // }
       let moduleResult;
       try {
-        moduleResult = firebase[moduleName]();
+        // moduleResult = firebase[moduleName]();
       } catch (error) {
         moduleResult = error.toString();
       }
@@ -43,7 +41,6 @@ export class About extends React.Component {
         </Text>
         <View style={styles.modules}>
           <Text style={styles.module}>Platform: { Platform.OS }</Text>
-          <Text style={styles.module}>SDK_VERSION: { firebase.SDK_VERSION }</Text>
           <Text style={styles.modulesHeader}>The following Firebase modules are pre-installed:</Text>
           {modules}
         </View>

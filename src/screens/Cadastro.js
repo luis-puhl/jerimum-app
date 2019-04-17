@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, TextInput, Image } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import firebase from 'react-native-firebase';
 
 import { colors, globalStyles, icon } from '../components/Theme';
 import { AppRoundBtn } from '../components/AppRoundBtn';
