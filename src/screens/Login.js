@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Animated, Keyboard, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Animated, Keyboard, KeyboardAvoidingView, TouchableOpacity, Button } from 'react-native';
 
-import { colors, globalStyles, roundStyle, window, icon } from './components/Theme';
-import { AppRoundBtn } from './components/AppRoundBtn';
-import { AppTextInput } from './components/AppTextInput';
+import { colors, globalStyles, roundStyle, window, icon } from '../components/Theme';
+import { ButtonComp } from '../components'
+import { AppRoundBtn } from '../components/AppRoundBtn';
+import { AppTextInput } from '../components/AppTextInput';
 
 export class Login extends React.Component {
   static navigationOptions = {
@@ -46,8 +47,15 @@ export class Login extends React.Component {
   setPassword = (password) => {
     this.setState(previousState => ({...previousState, password}));
   }
-  entrar = () => {
+  entrar = async () => {
     console.log(this.state);
+    const {email, password } = this.state;
+    try {
+      const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+      console.log({userCredential});
+    } catch (error) {
+      console.log({error});
+    }
     this.props.navigation.navigate('EscolhaMetodo');
   }
   cadastrar = () => {
@@ -63,7 +71,7 @@ export class Login extends React.Component {
       <KeyboardAvoidingView style={globalStyles.container} behavior="padding">
         <Animated.Image source={icon.source} style={{...icon.style, height: this.imageHeight }} />
         <AppTextInput
-          placeholder="Login"
+          placeholder="Email"
           value={this.state.username}
           onChangeText={this.setUsername}
           onSubmitEditing={() => this.pwdInputRef.focus()}
@@ -84,6 +92,7 @@ export class Login extends React.Component {
             cadastrar
           </AppRoundBtn.Text>
         </View>
+        <ButtonComp onPress={() => this.props.navigation.navigate('About')} title="sobre"/>
       </KeyboardAvoidingView>
     );
   }

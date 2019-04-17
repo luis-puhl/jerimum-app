@@ -1,4 +1,11 @@
 {
+  "name": "JerimuM",
+  "displayName": "JerimuM",
+  "icon": {
+    "ios": "./assets/apple-icon.png",
+    "android": "./assets/android-icon.png",
+    "default": "./assets/apple-icon.png"
+  },
   "expo": {
     "name": "JerimuM",
     "slug": "jerimum-app",

@@ -6,9 +6,9 @@ import { MaterialCommunityIcons, MaterialIcons, FontAwesome } from '@expo/vector
 import { Badge } from 'react-native-elements'
 import { PieChart } from 'react-native-svg-charts'
 
-import { AppTextInput } from './components/AppTextInput';
-import { AppRoundBtn } from './components/AppRoundBtn';
-import { colors, invertColor } from './components/Theme';
+import { AppTextInput } from '../components/AppTextInput';
+import { AppRoundBtn } from '../components/AppRoundBtn';
+import { colors, invertColor } from '../components/Theme';
 
 
 export class Timer extends React.Component {

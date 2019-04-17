@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, DatePickerAndroid, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { AppTextInput } from './components/AppTextInput';
-import { AppRoundBtn } from './components/AppRoundBtn';
+import { AppTextInput } from '../components/AppTextInput';
+import { AppRoundBtn } from '../components/AppRoundBtn';
 
 export class ObjetivosScren extends React.Component {
   static navigationOptions = {

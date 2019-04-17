@@ -1,9 +1,11 @@
 import React from 'react';
-import { ScrollView, View, Text, Switch, TouchableOpacity, Button } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, Button } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Badge } from 'react-native-elements'
 
-import { globalStyles, colors, activityIcons, invertColor } from './components/Theme';
+import { globalStyles, colors, activityIcons, invertColor } from '../components/Theme';
 
+const siglas = ['IN', 'DA', 'LP', 'DT', 'DP', 'RL', 'AF',];
 const fakeDays = {
   hours: Array(24).fill(0).map(
     (v, i) => i.toString().padStart(2, '0') + ':00'
@@ -16,7 +18,7 @@ const fakeDays = {
           dayIndex,
           hourIndex,
           key: `d:${dayIndex} h:${hourIndex}`,
-          icon: activityIcons[Math.floor(Math.random() * activityIcons.length)],
+          sigla: siglas[Math.floor(Math.random() * activityIcons.length)],
           color: colors.weekDay[Math.floor(Math.random() * colors.weekDay.length)],
         })
       ),
@@ -24,29 +26,47 @@ const fakeDays = {
   ),
 }
 
+function mkBadge(key, value, color=colors.gray, size=12) {
+  const containerStyle = {
+    // flex: 1,
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderStyle: 'dashed',
+    borderBottomColor: colors.gray,
+    // borderRadius: 1, // hack
+  };
+  const badgeStyle = {
+    margin: 2,
+    backgroundColor: color,
+    height: size + 8,
+  }
+  const textStyle = {
+    fontSize: size,
+    textAlign: 'center',
+    color: invertColor(color),
+  };
+  if (!value || value.length === 0) {
+    badgeStyle.backgroundColor = 'transparent';
+    // badgeStyle.height = size + 10;
+  }
+  return (
+    <Badge
+      key={key}
+      value={value}
+      containerStyle={containerStyle}
+      badgeStyle={badgeStyle}
+      textStyle={textStyle}
+    />
+  )
+}
+
 class CalendarView extends React.Component {
   render() {
     const week = this.props.week;
     return (
       <View style={{flexDirection: 'row'}}>
-        <View style={{
-          flex: 1,
-          margin: 0,
-          justifyContent: 'center',
-          alignContent: 'center',
-          alignSelf: 'center',
-          textAlign: 'center',
-        }}>
-          {week.hours.map(hour => (
-            <Text key={hour} style={{
-              margin: 3,
-              padding: 4,
-              borderRadius: 10,
-              fontSize: 12,
-              backgroundColor: colors.gray,
-              color: colors.onGray,
-            }}>{hour}</Text>
-          ))}
+        <View>
+          {week.hours.map(hour => mkBadge(hour, hour))}
         </View>
         {week.days.map(day => (
           <View key={day.key} style={{
@@ -55,15 +75,7 @@ class CalendarView extends React.Component {
             borderLeftWidth: 1,
             borderLeftColor: colors.weekDay[day.key],
           }}>
-            {day.hours.map(activity => {
-              if (activity && activity.icon) return (
-                <Ionicons
-                key={activity.key}
-                style={{...styles.activity, color: activity.color}}
-                name={activity.icon} />
-              )
-              return (<Text key={activity.key} style={styles.activity}></Text>)
-            })}
+            {day.hours.map(activity => mkBadge(activity.key, activity.sigla, activity.color))}
           </View>
         ))}
       </View>
@@ -71,9 +83,9 @@ class CalendarView extends React.Component {
   }
 }
 
-export class Horarios extends React.Component {
+export class MateriasHorarios extends React.Component {
   static navigationOptions = {
-    title: 'Quadro de Horários',
+    title: 'Quadro de Estudos',
   };
   days = [22, 23, 24, 25, 26, 27, 28];
   weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
@@ -93,16 +105,19 @@ export class Horarios extends React.Component {
           <View style={{transform: [{scaleX: -1}]}}>
             <Ionicons name="md-color-wand" style={{fontSize: 50, color: colors.primary}} />
           </View>
-          <View>
-            <Switch value={this.state.auto} onValueChange={(auto) => this.setState(state => ({...state, auto}))} />
-            <Button title="Matérias" onPress={() => navigate('Materias')} />
+          <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity onPress={() => navigate('Timer')}>
+              <MaterialCommunityIcons name="timer" style={{fontSize: 50, color: colors.gray}} />
+            </TouchableOpacity>
+            <MaterialCommunityIcons name="bell-ring-outline" style={{fontSize: 50, color: colors.primary}} />
+            <Button title="ciclo" onPress={() => navigate('Ciclo')} />
           </View>
         </View>
         <View style={{flexDirection: 'row', justifyContent: 'space-evenly', margin: 3,}}>
           <Text style={styles.monthName}>Agosto</Text>
         </View>
         {/* ----------------------------------------------------------------------------------------------------------- */}
-        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}} onPress={() => navigate('HorariosDetail')}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}} onPress={() => navigate('MateriasHorariosDetail')}>
           <Text style={styles.base}></Text>
           {this.days.map(day => (
             <Text style={dayNumberStyle} key={day}>{day}</Text>
@@ -111,7 +126,7 @@ export class Horarios extends React.Component {
         <View style={{flexDirection: 'row', justifyContent: 'space-evenly',}}>
           <MaterialCommunityIcons style={{...styles.base, color: colors.primary, fontSize: 30}} name="clock-outline" />
           {this.weekDays.map((weekDay, i) => (
-            <TouchableOpacity key={weekDay + i} style={styles.base} onPress={() => navigate('HorariosDetail', {weekDay})}>
+            <TouchableOpacity key={weekDay + i} style={styles.base} onPress={() => navigate('MateriasHorariosDetail', {weekDay})}>
               <Text style={weekDayStyles[i]} key={weekDay}>{weekDay}</Text>
             </TouchableOpacity>
           ))}
@@ -124,9 +139,9 @@ export class Horarios extends React.Component {
   }
 }
 
-export class HorariosDetail extends React.Component {
+export class MateriasHorariosDetail extends React.Component {
   static navigationOptions = {
-    title: 'Quadro de Horários',
+    title: 'Quadro de Estudos',
   };
   render() {
     return (

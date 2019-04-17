@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, TextInput, Image } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { colors, globalStyles, icon } from './components/Theme';
-import { AppRoundBtn } from './components/AppRoundBtn';
+import { colors, globalStyles, icon } from '../components/Theme';
+import { AppRoundBtn } from '../components/AppRoundBtn';
 
 export class Cadastro extends React.Component {
   static navigationOptions = {
@@ -22,9 +22,20 @@ export class Cadastro extends React.Component {
     };
   }
   
-  send = () => {
+  send = async () => {
     const { navigate, popToTop } = this.props.navigation;
     console.log(this.state);
+    const {email, nome, idade, pais, estado, password } = this.state;
+    try {
+      const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+      console.log({userCredential});
+      if (userCredential && userCredential.user) {
+        const { navigate, popToTop } = this.props.navigation;
+        return popToTop();
+      }
+    } catch (error) {
+      console.log(error);
+    }
     popToTop();
   }
 

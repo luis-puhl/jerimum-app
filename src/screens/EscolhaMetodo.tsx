@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text, Alert, TouchableOpacity } from 'react-native';
+
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { colors } from './components/Theme';
-import { AppRoundBtn } from './components/AppRoundBtn';
+import { AppRoundBtn } from '../components/AppRoundBtn';
+import { colors } from '../components/Theme';
 
 export class EscolhaMetodo extends React.Component {
   static navigationOptions = {
@@ -12,13 +13,14 @@ export class EscolhaMetodo extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
+    const gotoObjetivos = () => navigate('Objetivos');
     return (
       <View style={styles.container}>
         <View style={styles.methodContainer}>
           <TouchableOpacity
             style={styles.bigIconButton}
             activeOpacity={ .5 }
-            onPress={() => navigate('Objetivos')}
+            onPress={gotoObjetivos}
             >
             <Text style={styles.headText}>Fixo</Text>
             <MaterialCommunityIcons name="calendar-text" size={100} color={colors.primary} />
@@ -26,7 +28,7 @@ export class EscolhaMetodo extends React.Component {
           <TouchableOpacity
             style={styles.bigIconButton}
             activeOpacity={ .5 }
-            onPress={() => navigate('Objetivos')}
+            onPress={gotoObjetivos}
             >
             <Text style={styles.headText}>ciclo</Text>
             <MaterialCommunityIcons name="chart-donut" size={100} color={colors.primary} />
@@ -35,7 +37,7 @@ export class EscolhaMetodo extends React.Component {
         <View style={styles.lowerBtnContainer}>
           <AppRoundBtn.MaterialCommunityIcons
             style={{fontSize: 40}}
-            onPress={() => navigate('Objetivos')}
+            onPress={gotoObjetivos}
             size={40}
             name="arrow-right-thick"
           />

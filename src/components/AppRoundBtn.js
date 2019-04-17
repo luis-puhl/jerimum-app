@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Text } from 'react-native'
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, MaterialIcons } from 'react-native-vector-icons';
 
 import { colors, globalStyles, roundStyle } from './Theme';
 

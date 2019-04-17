@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, View, Text, Alert, Button, ScrollView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { AppTextInput } from './components/AppTextInput';
-import { AppRoundBtn } from './components/AppRoundBtn';
-import { colors, invertColor } from './components/Theme';
+import { AppTextInput } from '../components/AppTextInput';
+import { AppRoundBtn } from '../components/AppRoundBtn';
+import { colors, invertColor } from '../components/Theme';
 
 export class Materias extends React.Component {
   static navigationOptions = {
